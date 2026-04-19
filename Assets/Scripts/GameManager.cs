@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public InputManager inputManager;
+
     public int Score { get; private set; }
 
     void Awake()
