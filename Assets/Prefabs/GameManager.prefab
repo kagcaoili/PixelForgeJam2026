@@ -44,6 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e5e8ac1d48d4fe5adf2f35dabe58fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrderManager
+  recipePool:
+  - {fileID: 11400000, guid: 86e85b8350b5f4aa998f40731745d7ce, type: 2}
+  initialOrderCount: 1
+  orderSpawnInterval: 5
+  maxActiveOrders: 3
+  patienceDuration: 30
+  bonusPercentageThreshold: 0.5
+  bonusMultiplier: 0.5
 --- !u!1 &7277474647881021780
 GameObject:
   m_ObjectHideFlags: 0
