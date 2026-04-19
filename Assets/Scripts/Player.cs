@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public Transform holdPoint;
 
     // The item that the player is currently holding, null if not holding anything
-    public Item HeldItem;
+    public Item heldItem { get; private set; }
 
     InputSystem_Actions inputActions;
     Rigidbody rb;
@@ -96,13 +96,22 @@ public class Player : MonoBehaviour
 
     public void Hold(Item item)
     {
-        HeldItem = item;
+        heldItem = item;
         item.transform.parent = holdPoint;
         item.transform.localPosition = Vector3.zero;
     }
 
+    public void Drop()
+    {
+        if (heldItem == null) return;
+
+        heldItem.transform.parent = null;
+        heldItem = null;
+    }
+
     void OnDrawGizmosSelected()
     {
+        // Helps visualize the player interactable area. Select player and see it in scene view
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactableRange);
     }

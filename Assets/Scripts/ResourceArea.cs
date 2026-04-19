@@ -11,7 +11,7 @@ public class ResourceArea : MonoBehaviour, IInteractable
     public void Interact(Player player)
     {
         // If player is already holding an item, do nothing
-        if (player.HeldItem != null) return;
+        if (player.heldItem != null) return;
 
         Item newItem = Instantiate(resourceItem);
         player.Hold(newItem);
