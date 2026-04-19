@@ -157,4 +157,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005e6fb6667324e459496d372f468d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Fish
+  itemName: Raw Fish

@@ -18,7 +18,7 @@ public class ServingArea : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.Log("Invalid item, no matching order found");
+            Debug.Log("Invalid order, player is holding " + player.heldItem.itemName);
             // TODO: Visual feedback for incorrect order?
         }
     }

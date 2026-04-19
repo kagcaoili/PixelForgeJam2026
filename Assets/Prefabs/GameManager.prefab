@@ -52,6 +52,8 @@ MonoBehaviour:
   patienceDuration: 30
   bonusPercentageThreshold: 0.5
   bonusMultiplier: 0.5
+  orderPrefab: {fileID: 2840821703573102968, guid: 6e7724666c5b5484995629f6437e64d4, type: 3}
+  orderListParent: {fileID: 0}
 --- !u!1 &7277474647881021780
 GameObject:
   m_ObjectHideFlags: 0

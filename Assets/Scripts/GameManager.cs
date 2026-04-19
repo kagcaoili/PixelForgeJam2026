@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    [Header("Managers")]
     public InputManager inputManager;
     public OrderManager orderManager;
 

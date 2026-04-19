@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    
     [Header("Movement Settings")]
     [Tooltip("The movement speed of the player")]
     public float speed = 5f;
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour
     {
         if (inputActions.Player.Interact.WasPressedThisFrame())
         {
-            Debug.Log("Player interacted!");
+            //Debug.Log("Player interacted!");
             TryInteract();
         }
     }
@@ -77,7 +78,7 @@ public class Player : MonoBehaviour
         Collider[] hits = Physics.OverlapSphere(transform.position, interactableRange);
         foreach(Collider hit in hits)
         {
-            Debug.Log("Colliding with " + hit.name);
+            //Debug.Log("Colliding with " + hit.name);
             // Checks if the hit object or its parent has an Interactable component
             if (hit.TryGetComponent(out IInteractable target))
             {

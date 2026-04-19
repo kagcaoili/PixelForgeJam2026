@@ -33,8 +33,13 @@ public class OrderManager : MonoBehaviour
     [Tooltip("Bonus multiplier awarded for completing an order quickly")]
     public float bonusMultiplier = 0.5f; // e.g. 50% bonus if completed above threshold
 
+    [Header("UI")]
+    public GameObject orderPrefab;
+    public Transform orderListParent;
+
     private List<Order> activeOrders = new List<Order>();
     private float orderSpawnTimer = 0f;
+    private Dictionary<Order, OrderUI> ordersUIMap = new Dictionary<Order, OrderUI>();
 
     void Update()
     {
@@ -46,6 +51,9 @@ public class OrderManager : MonoBehaviour
             {
                 // Order expired, remove it
                 Debug.Log($"Found expired order: {activeOrders[i].recipe.recipeName}");
+
+                RemoveOrderFromUI(activeOrders[i]);
+
                 activeOrders.RemoveAt(i);
 
                 // TODO: SFX? Visual penalty for expired order
@@ -53,32 +61,57 @@ public class OrderManager : MonoBehaviour
         }
 
         // spawn new orders at intervals if we have room for more
-        orderSpawnTimer += Time.deltaTime;
-        if (orderSpawnTimer >= orderSpawnInterval && activeOrders.Count < maxActiveOrders)
+        if (activeOrders.Count < maxActiveOrders)
         {
-            orderSpawnTimer = 0f;
-            int randomIndex = Random.Range(0, recipePool.Length);
-            Recipe randomRecipe = recipePool[randomIndex];
-            Order newOrder = new Order(randomRecipe);
-            activeOrders.Add(newOrder);
-            Debug.Log($"Spawned new order: {randomRecipe.recipeName}");
+            orderSpawnTimer += Time.deltaTime;
+            if (orderSpawnTimer >= orderSpawnInterval)
+            {
+                orderSpawnTimer = 0f;
+                int randomIndex = Random.Range(0, recipePool.Length);
+                Recipe randomRecipe = recipePool[randomIndex];
+                Order newOrder = new Order(randomRecipe);
+                activeOrders.Add(newOrder);
+
+                // add to UI
+                GameObject orderGO = Instantiate(orderPrefab, orderListParent);
+                OrderUI orderUI = orderGO.GetComponent<OrderUI>();
+                orderUI.SetOrder(newOrder);
+                ordersUIMap[newOrder] = orderUI;
+
+                Debug.Log($"Spawned new order: {randomRecipe.recipeName}");
+            }
         }
     }
 
     public bool CompleteOrder(Item item)
     {
+        //Debug.Log($"Submitting '{item.itemName}'. Active orders: {activeOrders.Count}");
+        //foreach (var o in activeOrders)
+        //    Debug.Log($"order wants '{o.recipe.requiredItemName}'");
+
         for (int i = 0; i < activeOrders.Count; i++)
         {
-            if (activeOrders[i].recipe.requiredItemName == item.itemName)
+            if (activeOrders[i].recipe.requiredItemName.Equals(item.itemName))
             {
                 float earnedPoints = activeOrders[i].CalculateReward();
                 GameManager.Instance.AddScore(Mathf.RoundToInt(earnedPoints));
                 Debug.Log($"Completed order: {activeOrders[i].recipe.recipeName} for {Mathf.RoundToInt(earnedPoints)} points");
+                
+                RemoveOrderFromUI(activeOrders[i]);
                 activeOrders.RemoveAt(i);
                 return true;
             }
         }
         return false; // No matching order found
+    }
+
+    void RemoveOrderFromUI(Order order)
+    {
+        if (ordersUIMap.TryGetValue(order, out OrderUI orderUI))
+        {
+            Destroy(orderUI.gameObject);
+            ordersUIMap.Remove(order);
+        }
     }
 
 }
