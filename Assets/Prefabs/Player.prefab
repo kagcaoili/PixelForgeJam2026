@@ -162,7 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   speed: 5
-  interactableRange: 1
+  turnSpeed: 12
+  interactableRange: 2
   holdPoint: {fileID: 6053449802544533695}
   HeldItem: {fileID: 0}
 --- !u!54 &5758085861893313909

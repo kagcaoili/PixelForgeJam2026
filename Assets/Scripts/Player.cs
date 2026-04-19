@@ -3,13 +3,17 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-
+    [Header("Movement Settings")]
     [Tooltip("The movement speed of the player")]
     public float speed = 5f;
 
-    [Tooltip("The range at which the player can interact with objects")]
-    [SerializeField] float interactableRange = 1f;
+    [Tooltip("The speed at which the player turns to face movement direction")]
+    [SerializeField] public float turnSpeed = 12f;
 
+    [Tooltip("The range at which the player can interact with objects")]
+    [SerializeField] public float interactableRange = 1f;
+
+    [Header("Object References")]
     [Tooltip("The point where held items will be positioned")]
     public Transform holdPoint;
 
@@ -44,6 +48,13 @@ public class Player : MonoBehaviour
         moveInput.z = kb.wKey.isPressed ? 1 : kb.sKey.isPressed ? -1 : 0;
 
         rb.linearVelocity = moveInput.normalized * speed;
+
+        // Rotate player to face movement direction if moving
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            Quaternion target = Quaternion.LookRotation(moveInput.normalized, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, turnSpeed * Time.deltaTime);
+        }
     }
 
     /// <summary>
