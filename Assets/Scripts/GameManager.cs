@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public InputManager inputManager;
+    public OrderManager orderManager;
 
     public int Score { get; private set; }
 
