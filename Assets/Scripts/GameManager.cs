@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,6 +9,9 @@ public class GameManager : MonoBehaviour
     [Header("Managers")]
     public InputManager inputManager;
     public OrderManager orderManager;
+
+    [Header("UI References")]
+    public TextMeshProUGUI scoreText;
 
     public int Score { get; private set; }
 
@@ -21,6 +26,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start()
+    {
+        Score = 0;
+        UpdateScoreUI();
+    }
+
     /// <summary>
     /// Called from other scripts to add score the player's total score
     /// </summary>
@@ -28,5 +39,12 @@ public class GameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         Score += amount;
+        UpdateScoreUI();
+    }
+
+    void UpdateScoreUI()
+    {
+        if (scoreText == null) return;
+        scoreText.text = $"Score: {Score}";
     }
 }

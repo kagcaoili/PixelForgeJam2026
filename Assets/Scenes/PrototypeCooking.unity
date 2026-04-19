@@ -1334,7 +1334,7 @@ GameObject:
   - component: {fileID: 1546975228}
   - component: {fileID: 1546975227}
   m_Layer: 5
-  m_Name: PointsLabel
+  m_Name: ScoreLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <b>Points:</b> {0}
+  m_text: <b>Score:</b> {0}
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2153,6 +2153,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3577051672470833191, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1546975227}
     - target: {fileID: 4347408244873787380, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: orderListParent
       value: 
