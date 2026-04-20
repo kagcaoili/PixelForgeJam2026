@@ -8,23 +8,6 @@ using System.Collections.Generic;
 public class OrderManager : MonoBehaviour
 {
 
-    [Header("Order Settings")]
-
-    [Tooltip("List of all possible recipes that can be ordered")]
-    public Recipe[] recipePool;
-
-    [Tooltip("Number of orders to generate at the start of the game")]
-    public int initialOrderCount = 1;
-
-    [Tooltip("Time interval (in seconds) between spawning new orders")]
-    public float orderSpawnInterval = 10f;
-
-    [Tooltip("Maximum number of active orders at a time")]
-    public float maxActiveOrders = 3;
-
-    [Tooltip("Time before an order expires")]
-    public float patienceDuration = 30f;
-
     [Header("Scoring")]
 
     [Tooltip("Percentage player must complete order by to get bonus points")]
@@ -43,6 +26,15 @@ public class OrderManager : MonoBehaviour
 
     void Update()
     {
+        // Only update orders if the day has begun
+        if (!GameManager.Instance.dayManager.isDayActive) return;
+
+        UpdateExistingOrders();
+        SpawnNewOrder();
+    }
+
+    private void UpdateExistingOrders()
+    {
         // tick down timers for active orders and remove expired ones
         for (int i = activeOrders.Count - 1; i >= 0; i--)
         {
@@ -59,16 +51,21 @@ public class OrderManager : MonoBehaviour
                 // TODO: SFX? Visual penalty for expired order
             }
         }
+    }
+
+    private void SpawnNewOrder()
+    {
+        Day currentDay = GameManager.Instance.dayManager.currentDay;
 
         // spawn new orders at intervals if we have room for more
-        if (activeOrders.Count < maxActiveOrders)
+        if (activeOrders.Count < currentDay.maxActiveOrders)
         {
             orderSpawnTimer += Time.deltaTime;
-            if (orderSpawnTimer >= orderSpawnInterval)
+            if (orderSpawnTimer >= currentDay.orderSpawnInterval)
             {
                 orderSpawnTimer = 0f;
-                int randomIndex = Random.Range(0, recipePool.Length);
-                Recipe randomRecipe = recipePool[randomIndex];
+                int randomIndex = Random.Range(0, currentDay.recipePool.Length);
+                Recipe randomRecipe = currentDay.recipePool[randomIndex];
                 Order newOrder = new Order(randomRecipe);
                 activeOrders.Add(newOrder);
 
@@ -83,6 +80,11 @@ public class OrderManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called by serving area when player tries to submit item for completion
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
     public bool CompleteOrder(Item item)
     {
         //Debug.Log($"Submitting '{item.itemName}'. Active orders: {activeOrders.Count}");
@@ -95,10 +97,12 @@ public class OrderManager : MonoBehaviour
             {
                 float earnedPoints = activeOrders[i].CalculateReward();
                 GameManager.Instance.AddScore(Mathf.RoundToInt(earnedPoints));
+                GameManager.Instance.dayManager.NotifyOrderCompleted();
                 Debug.Log($"Completed order: {activeOrders[i].recipe.recipeName} for {Mathf.RoundToInt(earnedPoints)} points");
                 
                 RemoveOrderFromUI(activeOrders[i]);
                 activeOrders.RemoveAt(i);
+
                 return true;
             }
         }

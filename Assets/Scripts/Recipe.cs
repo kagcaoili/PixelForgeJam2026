@@ -6,7 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Recipe", menuName = "Scriptable Objects/Recipe")]
 public class Recipe : ScriptableObject
 {
+    [Tooltip("Display name for this recipe")]
     public string recipeName;
+    [Tooltip("Name of the item required to complete this recipe")]
     public string requiredItemName;
-    public int baseReward = 10; // For completing the recipe
+    [Tooltip("Base reward for completing this recipe, before any time bonuses")]
+    public int baseReward = 10;
+    [Tooltip("Time in seconds before the order expires")]
+    public int expirationDuration = 30;
 }

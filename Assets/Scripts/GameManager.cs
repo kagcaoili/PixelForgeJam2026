@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("Managers")]
     public InputManager inputManager;
     public OrderManager orderManager;
+    public DayManager dayManager;
 
     [Header("UI References")]
     public TextMeshProUGUI scoreText;
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour
     {
         Score = 0;
         UpdateScoreUI();
+
+        // For testing, start first day immediately
+        dayManager.StartDay(0);
     }
 
     /// <summary>

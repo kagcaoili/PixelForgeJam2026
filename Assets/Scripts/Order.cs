@@ -13,8 +13,8 @@ public class Order
     public Order(Recipe recipe)
     {
         this.recipe = recipe;
-        this.timeRemaining = GameManager.Instance.orderManager.patienceDuration;
-        this.totalTime = GameManager.Instance.orderManager.patienceDuration;
+        this.timeRemaining = recipe.expirationDuration;
+        this.totalTime = recipe.expirationDuration;
     }
 
     /// <summary>

@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &133002506904073089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8623384713512354270}
+  - component: {fileID: 8884546616242369157}
+  m_Layer: 0
+  m_Name: DayManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8623384713512354270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133002506904073089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2315295043148461301}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8884546616242369157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133002506904073089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273435a315c7143e486097bd47286f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayManager
+  days:
+  - {fileID: 11400000, guid: 0975fa0a852a24ab2abed14a078b3c9f, type: 2}
+  dayText: {fileID: 0}
+  objectiveUIPrefab: {fileID: 2840821703573102968, guid: d0199ad1d6aa8421ab87f3bb2c2d2653, type: 3}
+  objectiveUIParent: {fileID: 0}
 --- !u!1 &3564376474486771871
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,12 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e5e8ac1d48d4fe5adf2f35dabe58fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrderManager
-  recipePool:
-  - {fileID: 11400000, guid: 86e85b8350b5f4aa998f40731745d7ce, type: 2}
-  initialOrderCount: 1
-  orderSpawnInterval: 5
-  maxActiveOrders: 3
-  patienceDuration: 30
   bonusPercentageThreshold: 0.5
   bonusMultiplier: 0.5
   orderPrefab: {fileID: 2840821703573102968, guid: 6e7724666c5b5484995629f6437e64d4, type: 3}
@@ -130,6 +173,7 @@ Transform:
   m_Children:
   - {fileID: 6954642637079392486}
   - {fileID: 3097114657868663596}
+  - {fileID: 8623384713512354270}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3577051672470833191
@@ -146,3 +190,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   inputManager: {fileID: 22027341877221828}
   orderManager: {fileID: 4347408244873787380}
+  dayManager: {fileID: 8884546616242369157}
+  scoreText: {fileID: 0}
