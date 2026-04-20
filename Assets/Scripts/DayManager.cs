@@ -27,6 +27,7 @@ public class DayManager : MonoBehaviour
         ordersCompletedToday = 0;
         isDayActive = true;
         UpdateDayUI();
+        GameManager.Instance.orderManager.SpawnInitialOrders();
 
         // Error if the day has no objectives
         if (currentDay.objectives == null || currentDay.objectives.Length == 0)

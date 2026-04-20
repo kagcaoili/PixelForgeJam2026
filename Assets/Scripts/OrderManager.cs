@@ -63,20 +63,38 @@ public class OrderManager : MonoBehaviour
             orderSpawnTimer += Time.deltaTime;
             if (orderSpawnTimer >= currentDay.orderSpawnInterval)
             {
-                orderSpawnTimer = 0f;
-                int randomIndex = Random.Range(0, currentDay.recipePool.Length);
-                Recipe randomRecipe = currentDay.recipePool[randomIndex];
-                Order newOrder = new Order(randomRecipe);
-                activeOrders.Add(newOrder);
-
-                // add to UI
-                GameObject orderGO = Instantiate(orderPrefab, orderListParent);
-                OrderUI orderUI = orderGO.GetComponent<OrderUI>();
-                orderUI.SetOrder(newOrder);
-                ordersUIMap[newOrder] = orderUI;
-
-                Debug.Log($"Spawned new order: {randomRecipe.recipeName}");
+                SpawnOrder();
             }
+        }
+    }
+
+    void SpawnOrder()
+    {
+        Day currentDay = GameManager.Instance.dayManager.currentDay;
+        orderSpawnTimer = 0f;
+        int randomIndex = Random.Range(0, currentDay.recipePool.Length);
+        Recipe randomRecipe = currentDay.recipePool[randomIndex];
+        Order newOrder = new Order(randomRecipe);
+        activeOrders.Add(newOrder);
+
+        // add to UI
+        GameObject orderGO = Instantiate(orderPrefab, orderListParent);
+        OrderUI orderUI = orderGO.GetComponent<OrderUI>();
+        orderUI.SetOrder(newOrder);
+        ordersUIMap[newOrder] = orderUI;
+
+        Debug.Log($"Spawned new order: {randomRecipe.recipeName}");
+    }
+
+    /// <summary>
+    /// At start of day, spawn initial orders so player doesn't have to wait for first order to spawn
+    /// </summary>
+    public void SpawnInitialOrders()
+    {
+        Day currentDay = GameManager.Instance.dayManager.currentDay;
+        for (int i = 0; i < currentDay.initialOrderCount; i++)
+        {
+            SpawnOrder();
         }
     }
 

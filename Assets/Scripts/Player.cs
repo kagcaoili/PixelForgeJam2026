@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance.dayManager.isDayActive) return; // Don't allow player to move or interact if the day isn't active
+        
         UpdateMovement();
         UpdateInteraction();
     }

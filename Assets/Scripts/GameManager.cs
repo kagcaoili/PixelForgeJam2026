@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
 
     [Header("UI References")]
     public TextMeshProUGUI scoreText;
+    public GameObject mainMenuUI;
+    public GameObject leftPanelUI;
+    public GameObject rightPanelUI;
 
     public int Score { get; private set; }
 
@@ -31,9 +34,15 @@ public class GameManager : MonoBehaviour
     {
         Score = 0;
         UpdateScoreUI();
+    }
 
-        // For testing, start first day immediately
-        dayManager.StartDay(0);
+    public void StartGame()
+    {
+        mainMenuUI.SetActive(false);
+        leftPanelUI.SetActive(true);
+        rightPanelUI.SetActive(true);
+        
+        dayManager.StartDay(0); // Start the first day
     }
 
     /// <summary>
