@@ -73,7 +73,8 @@ public class DayManager : MonoBehaviour
             Debug.Log($"Day {currentDay.dayName} failed");
         }
 
-        // TODO: Show end of day screen with results
+        // Show end day UI
+        GameManager.Instance.ShowEndGameUI();
     }
 
     void UpdateDayUI()
@@ -111,6 +112,29 @@ public class DayManager : MonoBehaviour
         {
             Debug.Log("No more days available!");
             return null;
+        }
+    }
+
+    public bool HasNextDay()
+    {
+        return currentDayIndex + 1 < days.Length;
+    }
+
+    /// <summary>
+    /// Called by UI to start next day after player clicks continue on end day screen
+    /// </summary>
+    /// <returns></returns>
+    public bool ContinueToNextDay()
+    {
+        if (HasNextDay())
+        {
+            StartDay(currentDayIndex + 1);
+            return true;
+        }
+        else
+        {
+            Debug.Log("No more days available!");
+            return false;
         }
     }
 

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject mainMenuUI;
     public GameObject leftPanelUI;
     public GameObject rightPanelUI;
+    public GameObject endDayUI;
 
     public int Score { get; private set; }
 
@@ -32,17 +33,42 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Score = 0;
-        UpdateScoreUI();
+        mainMenuUI.SetActive(true);
+        leftPanelUI.SetActive(false);
+        rightPanelUI.SetActive(false);
+        endDayUI.SetActive(false);
     }
 
+    /// <summary>
+    /// Called from start button on main menu to start the game
+    /// </summary>
     public void StartGame()
     {
+        Score = 0;
+        UpdateScoreUI();
+
         mainMenuUI.SetActive(false);
         leftPanelUI.SetActive(true);
         rightPanelUI.SetActive(true);
-        
+        endDayUI.SetActive(false);
+
         dayManager.StartDay(0); // Start the first day
+    }
+
+    /// <summary>
+    /// Play next day
+    /// </summary>
+    public void ContinuePlaying()
+    {
+        dayManager.ContinueToNextDay();
+    }
+
+    public void ShowEndGameUI()
+    {
+        mainMenuUI.SetActive(false);
+        leftPanelUI.SetActive(false);
+        rightPanelUI.SetActive(false);
+        endDayUI.SetActive(true);
     }
 
     /// <summary>
