@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -104,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
+        /*
         Score = 0;
         UpdateScoreUI();
         GameOver = false;
@@ -118,6 +120,9 @@ public class GameManager : MonoBehaviour
         orderManager.Reset();
         managerNPC.Reset();
         player.Reset();
+        */
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Just reset the scene...
     }
 
     /// <summary>
