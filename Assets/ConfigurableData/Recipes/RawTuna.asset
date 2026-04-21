@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac4af1a69eb704d40a98fe667d726b7d, type: 3}
-  m_Name: RawFish
+  m_Name: RawTuna
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
-  recipeName: Raw Fish
-  requiredItemName: Raw Fish
+  recipeName: Raw Tuna
+  requiredItemName: Raw Tuna
   baseReward: 10
+  expirationDuration: 30
