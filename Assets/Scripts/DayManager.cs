@@ -22,6 +22,7 @@ public class DayManager : MonoBehaviour
     /// <param name="newDayIndex"></param>
     public void StartDay(int newDayIndex)
     {
+        Time.timeScale = 1f;
         currentDayIndex = newDayIndex;
         currentDay = days[currentDayIndex];
         ordersCompletedToday = 0;
