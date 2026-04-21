@@ -60,6 +60,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ContinuePlaying()
     {
+        endDayUI.SetActive(false);
+        leftPanelUI.SetActive(true);
+        rightPanelUI.SetActive(true);
+        
         dayManager.ContinueToNextDay();
     }
 

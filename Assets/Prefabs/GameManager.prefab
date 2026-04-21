@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayManager
   days:
   - {fileID: 11400000, guid: 0975fa0a852a24ab2abed14a078b3c9f, type: 2}
+  - {fileID: 11400000, guid: 4062aa0182f82445a94f4fe2efbeb6a3, type: 2}
   dayText: {fileID: 0}
   objectiveUIPrefab: {fileID: 2840821703573102968, guid: d0199ad1d6aa8421ab87f3bb2c2d2653, type: 3}
   objectiveUIParent: {fileID: 0}
@@ -192,3 +193,7 @@ MonoBehaviour:
   orderManager: {fileID: 4347408244873787380}
   dayManager: {fileID: 8884546616242369157}
   scoreText: {fileID: 0}
+  mainMenuUI: {fileID: 0}
+  leftPanelUI: {fileID: 0}
+  rightPanelUI: {fileID: 0}
+  endDayUI: {fileID: 0}

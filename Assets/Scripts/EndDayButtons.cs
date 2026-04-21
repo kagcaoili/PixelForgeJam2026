@@ -13,7 +13,7 @@ public class EndDayButtons : MonoBehaviour
         if (GameManager.Instance.dayManager.HasNextDay())
         {
             PlayButton.SetActive(true);
-            ExitButton.SetActive(false);
+            ExitButton.SetActive(true);
             SubtitleText.text = "Start Next Day?";
         }
         else
