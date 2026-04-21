@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708c20b28623c4d468fbcea29a942ddd, type: 3}
   m_Name: Day2
   m_EditorClassIdentifier: Assembly-CSharp::Day
-  dayName: Day 1
+  dayName: Day 2
   recipePool:
   - {fileID: 11400000, guid: 86e85b8350b5f4aa998f40731745d7ce, type: 2}
   initialOrderCount: 1
@@ -20,5 +20,7 @@ MonoBehaviour:
   maxActiveOrders: 3
   patienceMeterStartAmount: 30
   objectives:
+  - type: 1
+    targetValue: 50
   - type: 0
     targetValue: 3
