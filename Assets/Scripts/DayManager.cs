@@ -28,6 +28,7 @@ public class DayManager : MonoBehaviour
         isDayActive = true;
         UpdateDayUI();
         GameManager.Instance.orderManager.SpawnInitialOrders();
+        GameManager.Instance.managerNPC.StartDay();
 
         // Error if the day has no objectives
         if (currentDay.objectives == null || currentDay.objectives.Length == 0)
@@ -60,21 +61,36 @@ public class DayManager : MonoBehaviour
         return true;
     }
 
-    void EndDay(bool success)
+    /// <summary>
+    /// Call by ManagerNPC when patience runs out or
+    /// if we fulfill all objectives and succeed
+    /// </summary>
+    /// <param name="success"></param>
+    public void EndDay(bool success)
     {
         isDayActive = false;
 
         if (success)
         {
             Debug.Log($"Day {currentDay.dayName} completed successfully");
+            GameManager.Instance.ShowEndGameUI();
         } 
         else
         {
             Debug.Log($"Day {currentDay.dayName} failed");
+            GameManager.Instance.ShowGameOverUI();
         }
+    }
 
-        // Show end day UI
-        GameManager.Instance.ShowEndGameUI();
+    /// <summary>
+    /// Reset game
+    /// </summary>
+    public void Reset()
+    {
+        currentDayIndex = 0;
+        currentDay = null;
+        ordersCompletedToday = 0;
+        isDayActive = false;
     }
 
     void UpdateDayUI()

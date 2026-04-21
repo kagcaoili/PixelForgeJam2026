@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     // The item that the player is currently holding, null if not holding anything
     public Item heldItem { get; private set; }
 
+    Vector3 originalPosition; // Used for resetting player position and rotation at new game
+    Vector3 originalRotation;
     InputSystem_Actions inputActions;
     Rigidbody rb;
     Vector3 moveInput;
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         inputActions = GameManager.Instance.inputManager.inputActions;
+        originalPosition = transform.position;
+        originalRotation = transform.eulerAngles;
     }
 
     void Update()
@@ -110,6 +114,13 @@ public class Player : MonoBehaviour
 
         heldItem.transform.parent = null;
         heldItem = null;
+    }
+
+    public void Reset()
+    {
+        transform.position = originalPosition;
+        transform.eulerAngles = originalRotation;
+        Drop();
     }
 
     void OnDrawGizmosSelected()

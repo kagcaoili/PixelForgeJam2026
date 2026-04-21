@@ -192,6 +192,7 @@ MonoBehaviour:
   inputManager: {fileID: 22027341877221828}
   orderManager: {fileID: 4347408244873787380}
   dayManager: {fileID: 8884546616242369157}
+  managerNPC: {fileID: 0}
   scoreText: {fileID: 0}
   mainMenuUI: {fileID: 0}
   leftPanelUI: {fileID: 0}

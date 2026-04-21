@@ -22,7 +22,7 @@ public class Day : ScriptableObject
     public int maxActiveOrders = 3;
 
     [Tooltip("How much patience the manager has for missed orders or cats on the counter before the day ends in failure")]
-    public float patienceMeterStartAmount = 30f; // TODO
+    public float patienceMeterStartAmount = 30f;
 
     [Header("Objectives")]
     [Tooltip("Objectives to complete for this day")]

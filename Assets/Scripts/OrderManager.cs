@@ -44,6 +44,9 @@ public class OrderManager : MonoBehaviour
                 // Order expired, remove it
                 Debug.Log($"Found expired order: {activeOrders[i].recipe.recipeName}");
 
+                // Penalize player for missed order
+                GameManager.Instance.managerNPC.LosePatienceFromExpiredOrder();
+
                 RemoveOrderFromUI(activeOrders[i]);
 
                 activeOrders.RemoveAt(i);
@@ -125,6 +128,19 @@ public class OrderManager : MonoBehaviour
             }
         }
         return false; // No matching order found
+    }
+
+    /// <summary>
+    /// Called to reset orders on new game
+    /// </summary>
+    public void Reset()
+    {
+        activeOrders.Clear();
+        foreach (var orderUI in ordersUIMap.Values)
+        {
+            Destroy(orderUI.gameObject);
+        }
+        ordersUIMap.Clear();
     }
 
     void RemoveOrderFromUI(Order order)
