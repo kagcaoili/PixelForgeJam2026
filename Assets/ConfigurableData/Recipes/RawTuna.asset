@@ -15,4 +15,4 @@ MonoBehaviour:
   recipeName: Raw Tuna
   requiredItemName: Raw Tuna
   baseReward: 10
-  expirationDuration: 30
+  expirationDuration: 10
