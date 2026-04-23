@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005e6fb6667324e459496d372f468d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Ice Cream x1
+  itemName: IceCreamX1
 --- !u!65 &2206052933425868704
 BoxCollider:
   m_ObjectHideFlags: 0
