@@ -2346,11 +2346,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3116022041180135771, guid: acaaba8977b3047e0b2485ad50be3ee7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3116022041180135771, guid: acaaba8977b3047e0b2485ad50be3ee7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3116022041180135771, guid: acaaba8977b3047e0b2485ad50be3ee7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3116022041180135771, guid: acaaba8977b3047e0b2485ad50be3ee7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2395,7 +2399,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1900687811968131118, guid: acaaba8977b3047e0b2485ad50be3ee7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: acaaba8977b3047e0b2485ad50be3ee7, type: 3}
 --- !u!4 &1212355835 stripped
 Transform:
