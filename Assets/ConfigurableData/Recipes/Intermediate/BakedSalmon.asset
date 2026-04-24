@@ -15,4 +15,4 @@ MonoBehaviour:
   recipeName: Baked Salmon
   requiredItemName: BakedSalmon
   baseReward: 30
-  expirationDuration: 30
+  expirationDuration: 60

@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 2577347709977453871}
   - component: {fileID: 2206052933425868704}
   m_Layer: 0
-  m_Name: SearedSalmon
+  m_Name: SearedTuna
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

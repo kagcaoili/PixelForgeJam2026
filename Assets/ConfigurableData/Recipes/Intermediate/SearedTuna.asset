@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac4af1a69eb704d40a98fe667d726b7d, type: 3}
-  m_Name: SearedSalmon
+  m_Name: SearedTuna
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
-  recipeName: Seared Salmon
-  requiredItemName: SearedSalmon
+  recipeName: Seared Tuna
+  requiredItemName: SearedTuna
   baseReward: 30
-  expirationDuration: 30
+  expirationDuration: 60
