@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 708c20b28623c4d468fbcea29a942ddd, type: 3}
-  m_Name: Day3
+  m_Name: Day4
   m_EditorClassIdentifier: Assembly-CSharp::Day
-  dayName: Day 3
+  dayName: Day 4
   recipePool:
-  - {fileID: 11400000, guid: fe6e776bd901843718f236694800c12e, type: 2}
-  - {fileID: 11400000, guid: 8a92c866b9a0642a78bfe86e6e757d19, type: 2}
+  - {fileID: 11400000, guid: 0910cc569fecd46b3924e3b890782ab0, type: 2}
   initialOrderCount: 1
   orderSpawnInterval: 10
   maxActiveOrders: 3
   patienceMeterStartAmount: 30
   objectives:
   - type: 0
-    targetValue: 10
+    targetValue: 3

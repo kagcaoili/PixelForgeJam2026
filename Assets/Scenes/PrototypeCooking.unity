@@ -6163,7 +6163,7 @@ PrefabInstance:
       objectReference: {fileID: 1802566969}
     - target: {fileID: 8884546616242369157, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: days.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8884546616242369157, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: objectiveUIParent
@@ -6172,7 +6172,7 @@ PrefabInstance:
     - target: {fileID: 8884546616242369157, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: 'days.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: bdaef7d1b2188420f9e32f0a8a0a6345, type: 2}
+      objectReference: {fileID: 11400000, guid: 0975fa0a852a24ab2abed14a078b3c9f, type: 2}
     - target: {fileID: 8884546616242369157, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: 'days.Array.data[1]'
       value: 
@@ -6180,7 +6180,11 @@ PrefabInstance:
     - target: {fileID: 8884546616242369157, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: 'days.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 0975fa0a852a24ab2abed14a078b3c9f, type: 2}
+      objectReference: {fileID: 11400000, guid: bdaef7d1b2188420f9e32f0a8a0a6345, type: 2}
+    - target: {fileID: 8884546616242369157, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
+      propertyPath: 'days.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e1a18a316534b4c90aa48db0b047ab34, type: 2}
     - target: {fileID: 8952333037488927201, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: m_Name
       value: GameManager
