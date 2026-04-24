@@ -3,9 +3,9 @@ using UnityEngine;
 /// <summary>
 /// Player interacts with serving area to complete an order
 /// </summary>
-public class ServingArea : MonoBehaviour, IInteractable
+public class ServingArea : Station
 {
-    public void Interact(Player player)
+    public override void Interact(Player player)
     {
         // If player is not holding anything, do nothing
         if (player.heldItem == null) return;
