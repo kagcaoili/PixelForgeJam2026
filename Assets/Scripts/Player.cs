@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     InputSystem_Actions inputActions;
     Rigidbody rb;
     Vector3 moveInput;
+    IInteractable currentTarget; // The interactable the player is currently looking at
 
     void Start()
     {
@@ -69,59 +70,58 @@ public class Player : MonoBehaviour
     /// </summary>
     void UpdateInteraction()
     {
-        if (inputActions.Player.Interact.WasPressedThisFrame())
-        {
-            //Debug.Log("Player interacted!");
-            TryInteract();
-        }
-
-        if (inputActions.Player.Interact.IsPressed())
-        {
-            Debug.Log("Player is holding interact");
-            TryInteractHold();
-        }
-    }
-
-    /// <summary>
-    /// Checks for interactable objects within the player's interactable range and interacts with the first one found
-    /// </summary>
-    void TryInteract()
-    {
         Collider[] hits = Physics.OverlapSphere(transform.position, interactableRange);
+        // look for closest hit
+        float bestDist = float.MaxValue;
+        IInteractable bestTarget = null;
         foreach(Collider hit in hits)
         {
-            //Debug.Log("Colliding with " + hit.name);
             // Checks if the hit object or its parent has an Interactable component
             if (hit.TryGetComponent(out IInteractable target))
             {
-                Debug.Log("Interacting with " + hit.name);
-                target.Interact(this);
-                return;
+                Debug.Log("Found interactable: " + hit.name);
+                float dist = Vector3.Distance(transform.position, hit.transform.position);
+                if (dist < bestDist)
+                {
+                    bestDist = dist;
+                    bestTarget = target;
+                }
             } else if (hit.GetComponentInParent<IInteractable>() != null)
             {
+                Debug.Log("Found interactable in parent: " + hit.name);
                 IInteractable parentTarget = hit.GetComponentInParent<IInteractable>();
-                Debug.Log("Interacting with parent " + parentTarget);
-                parentTarget.Interact(this);
-                return;
+                float dist = Vector3.Distance(transform.position, hit.transform.position);
+                if (dist < bestDist)
+                {
+                    bestDist = dist;
+                    bestTarget = parentTarget;
+                }
             }
         }
-    }
 
-    void TryInteractHold()
-    {
-        Collider[] hits = Physics.OverlapSphere(transform.position, interactableRange);
-        foreach(Collider hit in hits)
+        Debug.Log("Best target: " + (bestTarget != null ? bestTarget.ToString() : "null"));
+        Debug.Log("Current target: " + (currentTarget != null ? currentTarget.ToString() : "null"));
+        // Hover logic
+        if (bestTarget != currentTarget)
         {
-            if (hit.TryGetComponent(out IInteractable target))
-            {
-                target.InteractHold(this, Time.deltaTime);
-                return;
-            } else if (hit.GetComponentInParent<IInteractable>() != null)
-            {
-                IInteractable parentTarget = hit.GetComponentInParent<IInteractable>();
-                parentTarget.InteractHold(this, Time.deltaTime);
-                return;
-            }
+            if (currentTarget != null) currentTarget.OnHoverExit();
+            currentTarget = bestTarget;
+            if (currentTarget != null) currentTarget.OnHoverEnter();
+        }
+
+        if (currentTarget == null) return;
+
+        // Press E to interact
+        if (inputActions.Player.Interact.WasPressedThisFrame())
+        {
+            //Debug.Log("Player interacted!");
+            currentTarget.Interact(this);
+        }
+
+        // Hold E to interact
+        if (inputActions.Player.Interact.IsPressed())
+        {
+            currentTarget.InteractHold(this, Time.deltaTime);
         }
     }
 

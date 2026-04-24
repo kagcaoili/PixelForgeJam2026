@@ -290,6 +290,7 @@ MonoBehaviour:
     duration: 2
     requiresHold: 1
   itemHoldPoint: {fileID: 2556664370408026216}
+  hoverIndicator: {fileID: 3929510505184550686}
 --- !u!1 &8800436551675527073
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,10 +4,17 @@ public abstract class Station : MonoBehaviour, IInteractable
 {
     public TransformRule[] transformRules;
     public Transform itemHoldPoint; // where item is parented when being transformed
+    [Tooltip("Indicator that shows if player is eligible to interact with it")]
+    public GameObject hoverIndicator;
 
     protected Item currentItem;
     protected TransformRule currentRule;
     protected float progress;
+
+    private void Start()
+    {
+        if (hoverIndicator != null) hoverIndicator.SetActive(false);
+    }
 
     public virtual void Interact(Player player)
     {
@@ -53,5 +60,15 @@ public abstract class Station : MonoBehaviour, IInteractable
         currentItem.transform.localPosition = Vector3.zero;
         currentRule = null;
         progress = 0f;
+    }
+
+    public virtual void OnHoverEnter()
+    {
+        if (hoverIndicator != null) hoverIndicator.SetActive(true);
+    }
+
+    public virtual void OnHoverExit()
+    {
+        if (hoverIndicator != null) hoverIndicator.SetActive(false);
     }
 }
