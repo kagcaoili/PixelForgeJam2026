@@ -83,7 +83,7 @@ public abstract class Station : MonoBehaviour, IInteractable
         if (progressBarFill == null) return;
 
         // no rule set means no progress to show
-        if (currentRule == null || !currentRule.requiresHold)
+        if (currentRule == null)
         {
             progressBar.SetActive(false);
             progressBarFill.fillAmount = 0f;
@@ -91,10 +91,10 @@ public abstract class Station : MonoBehaviour, IInteractable
         }
 
         // there's a rule, but only show progress if it requires hold
-        if (currentRule.requiresHold)
-        {
-            progressBar.SetActive(true);
-            progressBarFill.fillAmount = progress / currentRule.duration;
-        }
+        //if (currentRule.requiresHold)
+        //{
+        progressBar.SetActive(true);
+        progressBarFill.fillAmount = progress / currentRule.duration;
+        //}
     }
 }

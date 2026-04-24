@@ -19,7 +19,7 @@ MonoBehaviour:
   initialOrderCount: 1
   orderSpawnInterval: 10
   maxActiveOrders: 3
-  patienceMeterStartAmount: 100
+  patienceMeterStartAmount: 30
   objectives:
   - type: 0
     targetValue: 5

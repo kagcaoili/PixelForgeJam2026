@@ -15,4 +15,4 @@ MonoBehaviour:
   recipeName: Boiled Crab
   requiredItemName: BoiledCrab
   baseReward: 20
-  expirationDuration: 20
+  expirationDuration: 60

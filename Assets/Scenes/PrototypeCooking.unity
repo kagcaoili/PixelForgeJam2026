@@ -6156,7 +6156,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2733451290122735517, guid: bf95c00db37b14afa91e055684049769, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: bf95c00db37b14afa91e055684049769, type: 3}
 --- !u!1001 &2403340671860680292
 PrefabInstance:
@@ -6250,6 +6253,14 @@ PrefabInstance:
       propertyPath: objectiveUIParent
       value: 
       objectReference: {fileID: 1997073610}
+    - target: {fileID: 8884546616242369157, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
+      propertyPath: 'days.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4062aa0182f82445a94f4fe2efbeb6a3, type: 2}
+    - target: {fileID: 8884546616242369157, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
+      propertyPath: 'days.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0975fa0a852a24ab2abed14a078b3c9f, type: 2}
     - target: {fileID: 8952333037488927201, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: m_Name
       value: GameManager

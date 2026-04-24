@@ -15,4 +15,4 @@ MonoBehaviour:
   recipeName: Tuna Sashimi
   requiredItemName: TunaSashimi
   baseReward: 20
-  expirationDuration: 120
+  expirationDuration: 60
