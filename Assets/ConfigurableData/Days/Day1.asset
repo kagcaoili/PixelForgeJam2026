@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Day
   dayName: Day 1
   recipePool:
-  - {fileID: 11400000, guid: 86e85b8350b5f4aa998f40731745d7ce, type: 2}
+  - {fileID: 11400000, guid: b31409287ee05487db90071842f82ba2, type: 2}
+  - {fileID: 11400000, guid: 7971704abf56741e1ad6be71b31b4717, type: 2}
   initialOrderCount: 1
   orderSpawnInterval: 10
   maxActiveOrders: 3
-  patienceMeterStartAmount: 10
+  patienceMeterStartAmount: 100
   objectives:
   - type: 0
-    targetValue: 3
+    targetValue: 5

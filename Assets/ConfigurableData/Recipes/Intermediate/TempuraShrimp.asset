@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4af1a69eb704d40a98fe667d726b7d, type: 3}
   m_Name: TempuraShrimp
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
-  recipeName: Raw Tuna
-  requiredItemName: Raw Tuna
-  baseReward: 10
-  expirationDuration: 10
+  recipeName: Tempura Shrimp
+  requiredItemName: TempuraShrimp
+  baseReward: 30
+  expirationDuration: 30

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4af1a69eb704d40a98fe667d726b7d, type: 3}
   m_Name: BakedSalmon
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
-  recipeName: Boiled Crab
-  requiredItemName: BoiledCrab
-  baseReward: 20
-  expirationDuration: 20
+  recipeName: Baked Salmon
+  requiredItemName: BakedSalmon
+  baseReward: 30
+  expirationDuration: 30

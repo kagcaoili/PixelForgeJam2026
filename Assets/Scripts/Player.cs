@@ -74,6 +74,12 @@ public class Player : MonoBehaviour
             //Debug.Log("Player interacted!");
             TryInteract();
         }
+
+        if (inputActions.Player.Interact.IsPressed())
+        {
+            Debug.Log("Player is holding interact");
+            TryInteractHold();
+        }
     }
 
     /// <summary>
@@ -101,6 +107,24 @@ public class Player : MonoBehaviour
         }
     }
 
+    void TryInteractHold()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, interactableRange);
+        foreach(Collider hit in hits)
+        {
+            if (hit.TryGetComponent(out IInteractable target))
+            {
+                target.InteractHold(this, Time.deltaTime);
+                return;
+            } else if (hit.GetComponentInParent<IInteractable>() != null)
+            {
+                IInteractable parentTarget = hit.GetComponentInParent<IInteractable>();
+                parentTarget.InteractHold(this, Time.deltaTime);
+                return;
+            }
+        }
+    }
+
     public void Hold(Item item)
     {
         heldItem = item;
@@ -114,6 +138,17 @@ public class Player : MonoBehaviour
 
         heldItem.transform.parent = null;
         heldItem = null;
+    }
+
+    // Similar to drop but also returns the item, used in station
+    public Item TakeHeldItem()
+    {
+        if (heldItem == null) return null;
+
+        Item item = heldItem;
+        item.transform.parent = null;
+        heldItem = null;
+        return item;
     }
 
     public void Reset()
