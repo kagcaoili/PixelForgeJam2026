@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: TempuraShrimp
+  displayName: Tempura Shrimp
 --- !u!65 &2206052933425868704
 BoxCollider:
   m_ObjectHideFlags: 0
