@@ -10,6 +10,7 @@ public class CuttingBoardArea : Station
         if (currentItem == null || currentRule == null || !currentRule.requiresHold) return;
 
         progress += deltaTime;
+        UpdateProgressBar();
         if (progress >= currentRule.duration)
         {
             Transform(); // turn input item into output item

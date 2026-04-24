@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Quick billboard script to make text face the camera
 /// </summary>
-//[ExecuteAlways]
+[ExecuteAlways]
 public class Billboard : MonoBehaviour
 {
     private Transform cam;

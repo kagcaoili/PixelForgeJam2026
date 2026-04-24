@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Station : MonoBehaviour, IInteractable
 {
@@ -7,12 +8,16 @@ public abstract class Station : MonoBehaviour, IInteractable
     [Tooltip("Indicator that shows if player is eligible to interact with it")]
     public GameObject hoverIndicator;
 
+    public Image progressBarFill;
+    public GameObject progressBar;
+
     protected Item currentItem;
     protected TransformRule currentRule;
     protected float progress;
 
     private void Start()
     {
+        if (progressBar != null) progressBar.SetActive(false);
         if (hoverIndicator != null) hoverIndicator.SetActive(false);
     }
 
@@ -60,6 +65,7 @@ public abstract class Station : MonoBehaviour, IInteractable
         currentItem.transform.localPosition = Vector3.zero;
         currentRule = null;
         progress = 0f;
+        UpdateProgressBar();
     }
 
     public virtual void OnHoverEnter()
@@ -70,5 +76,25 @@ public abstract class Station : MonoBehaviour, IInteractable
     public virtual void OnHoverExit()
     {
         if (hoverIndicator != null) hoverIndicator.SetActive(false);
+    }
+
+    public void UpdateProgressBar()
+    {
+        if (progressBarFill == null) return;
+
+        // no rule set means no progress to show
+        if (currentRule == null || !currentRule.requiresHold)
+        {
+            progressBar.SetActive(false);
+            progressBarFill.fillAmount = 0f;
+            return;
+        }
+
+        // there's a rule, but only show progress if it requires hold
+        if (currentRule.requiresHold)
+        {
+            progressBar.SetActive(true);
+            progressBarFill.fillAmount = progress / currentRule.duration;
+        }
     }
 }
