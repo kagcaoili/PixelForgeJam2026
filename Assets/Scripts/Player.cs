@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     // The item that the player is currently holding, null if not holding anything
     public Item heldItem { get; private set; }
+    public Cat heldCat { get; private set; } // cant hold item and cat at same time
 
     Vector3 originalPosition; // Used for resetting player position and rotation at new game
     Vector3 originalRotation;
@@ -125,6 +126,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    #region Item Handling
     public void Hold(Item item)
     {
         heldItem = item;
@@ -150,6 +152,24 @@ public class Player : MonoBehaviour
         heldItem = null;
         return item;
     }
+    #endregion
+
+    #region Cat Handling
+    public void HoldCat(Cat cat)
+    {
+        heldCat = cat;
+        cat.transform.parent = holdPoint;
+        cat.transform.localPosition = Vector3.zero;
+    }
+
+    public void DropCat()
+    {
+        if (heldCat == null) return;
+
+        heldCat.transform.parent = null;
+        heldCat = null;
+    }
+    #endregion
 
     public void Reset()
     {
