@@ -436,7 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Cat
   scoreFeedValue: 10
   scorePetValue: 5
-  needsFood: 1
+  needsFood: 0
   needsPet: 0
   minIdleTime: 5
   maxIdleTime: 15

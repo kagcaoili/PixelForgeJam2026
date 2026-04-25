@@ -42,7 +42,7 @@ public class Cat : MonoBehaviour, IInteractable
     public GameObject progressBar;
 
     private float timerProgress; // for interactions
-    private float nextNeedTime; // randomized time betwen min and max 
+    //private float nextNeedTime; // randomized time betwen min and max 
 
     /// <summary>
     /// Called when players interacts with the cat
@@ -144,7 +144,7 @@ public class Cat : MonoBehaviour, IInteractable
     }
     void Start()
     {
-        nextNeedTime = Time.time + Random.Range(minIdleTime, maxIdleTime);
+        //nextNeedTime = Time.time + Random.Range(minIdleTime, maxIdleTime);
         UpdateNeedLabel();
 
         if (progressBar != null) progressBar.SetActive(false);
@@ -167,10 +167,11 @@ public class Cat : MonoBehaviour, IInteractable
         // already needs something. needy cat
         if (needsAttention) return;
 
-        if (Time.time >= nextNeedTime)
-        {
-            PickNextNeed();
-        }
+        //if (Time.time >= nextNeedTime)
+        //{
+        //    PickNextNeed();
+        //}
+        PickNextNeed();
 
     }
 

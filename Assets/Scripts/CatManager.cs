@@ -17,6 +17,8 @@ public class CatManager : MonoBehaviour
         // Only update if the day has begun
         if (!GameManager.Instance.dayManager.isDayActive) return;
 
+        if (activeCats.Count >= spawnPoints.Length) return; // no more space
+
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= spawnInterval)
         {
