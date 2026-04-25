@@ -40,4 +40,10 @@ public class CatManager : MonoBehaviour
             }
         }
     }
+
+    public void RemoveCat(Cat cat)
+    {
+        activeCats.Remove(cat);
+        Destroy(cat.gameObject);
+    }
 }
