@@ -71,6 +71,12 @@ public class Player : MonoBehaviour
     /// </summary>
     void UpdateInteraction()
     {
+        // check if current target is destroyed to clear it
+        if (currentTarget != null && (currentTarget as UnityEngine.Object) == null)
+        {
+            currentTarget = null;
+        }
+
         Collider[] hits = Physics.OverlapSphere(transform.position, interactableRange);
         // look for closest hit
         float bestDist = float.MaxValue;
