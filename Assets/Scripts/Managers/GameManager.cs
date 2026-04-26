@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject endDayUI;
     public GameObject gameOverUI;
     public GameObject firstDayTutorialUI;
+    public GameObject pauseMenuUI;
 
     [Header("Zones")]
     public AlleyZone alleyZone;
@@ -38,7 +40,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
         rightPanelUI.SetActive(false);
         endDayUI.SetActive(false);
         gameOverUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
     }
 
     /// <summary>
@@ -64,7 +67,8 @@ public class GameManager : MonoBehaviour
         endDayUI.SetActive(false);
         gameOverUI.SetActive(false);
         firstDayTutorialUI.SetActive(false);
-
+        pauseMenuUI.SetActive(false);
+        
         dayManager.StartDay(0); // Start the first day
         Time.timeScale = 1f; // Ensure game is running at normal speed
     }
@@ -80,6 +84,7 @@ public class GameManager : MonoBehaviour
         rightPanelUI.SetActive(true);
         gameOverUI.SetActive(false);
         firstDayTutorialUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
 
         dayManager.ContinueToNextDay();
     }
@@ -95,6 +100,7 @@ public class GameManager : MonoBehaviour
         endDayUI.SetActive(true);
         gameOverUI.SetActive(false);
         firstDayTutorialUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
 
         Time.timeScale = 0f; // Pause the game
     }
@@ -108,6 +114,7 @@ public class GameManager : MonoBehaviour
         endDayUI.SetActive(false);
         gameOverUI.SetActive(true);
         firstDayTutorialUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
 
         Time.timeScale = 0f; // Pause the game
     }
@@ -120,6 +127,33 @@ public class GameManager : MonoBehaviour
         endDayUI.SetActive(false);
         gameOverUI.SetActive(false);
         firstDayTutorialUI.SetActive(true);
+        pauseMenuUI.SetActive(false);
+    }
+
+    public void ShowPauseMenu()
+    {
+        mainMenuUI.SetActive(false);
+        leftPanelUI.SetActive(false);
+        rightPanelUI.SetActive(false);
+        endDayUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        firstDayTutorialUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
+
+        Time.timeScale = 0f; // Pause the game
+    }
+
+    public void HidePauseMenu()
+    {
+        mainMenuUI.SetActive(false);
+        leftPanelUI.SetActive(true);
+        rightPanelUI.SetActive(true);
+        endDayUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        firstDayTutorialUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
+
+        Time.timeScale = 1f; // Resume the game
     }
 
     public void ResetGame()
@@ -158,5 +192,30 @@ public class GameManager : MonoBehaviour
     {
         if (scoreText == null) return;
         scoreText.text = $"Score: {Score}";
+    }
+
+    void Update()
+    {
+        CheckForPause();
+    }
+
+    void CheckForPause()
+    {
+        // Only update if the day has begun
+        if (!dayManager.isDayActive) return;
+
+        Keyboard kb = Keyboard.current;
+        if (kb == null) return;
+        if (kb.escapeKey.wasPressedThisFrame)
+        {
+            if (pauseMenuUI.activeSelf)
+            {
+                HidePauseMenu();
+            }
+            else
+            {
+                ShowPauseMenu();
+            }
+        }
     }
 }

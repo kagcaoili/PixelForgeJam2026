@@ -3947,6 +3947,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 180923958}
     - target: {fileID: 3577051672470833191, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
+      propertyPath: pauseMenuUI
+      value: 
+      objectReference: {fileID: 3777005538533842341}
+    - target: {fileID: 3577051672470833191, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: rightPanelUI
       value: 
       objectReference: {fileID: 1901594666}
@@ -4542,6 +4546,11 @@ PrefabInstance:
       addedObject: {fileID: 1514945115}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 798d76ce73d1e4eeeb4cf8758d57e6f5, type: 3}
+--- !u!1 &3777005538533842341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8804684613455332250, guid: 798d76ce73d1e4eeeb4cf8758d57e6f5, type: 3}
+  m_PrefabInstance: {fileID: 3777005538533842340}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4501541017362479707
 PrefabInstance:
   m_ObjectHideFlags: 0
