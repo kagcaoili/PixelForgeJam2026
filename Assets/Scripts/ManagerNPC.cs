@@ -127,10 +127,12 @@ public class ManagerNPC : MonoBehaviour
     void UpdatePatrol()
     {
         Transform targetPoint = patrolPoints[currentPatrolIndex];
-        transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);
+        Vector3 targetPosition = targetPoint.position;
+        targetPosition.y = transform.position.y; // keep manager on same y level
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
         // look in the direciton
-        Vector3 dir = (targetPoint.position - transform.position).normalized;
+        Vector3 dir = (targetPosition - transform.position).normalized;
         if (dir.sqrMagnitude > 0f)
         {
             transform.rotation = Quaternion.LookRotation(dir);
@@ -138,7 +140,7 @@ public class ManagerNPC : MonoBehaviour
 
         // Check if reached patrol point. 0.1f is close enough since its floating point
         // Wait at the spot before moving to next one
-        if (Vector3.Distance(transform.position, targetPoint.position) < 0.1f)
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
             bool stillShooing = investigating && currentPatrolIndex == alleyEntranceIndex;
             // if shooing, keep waiting at alley entrance until done shooing
