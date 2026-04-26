@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 7667579429830234314}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   turnSpeed: 12
   interactableRange: 2
   holdPoint: {fileID: 6053449802544533695}
+  interactingWithCat: 0
 --- !u!54 &5758085861893313909
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class Cat : MonoBehaviour, IInteractable
     public bool needsFood = false;
     public bool needsPet = false;
     public bool needsAttention => needsFood || needsPet;
+    public bool isShooedAway = false;
 
     [Header("Need Timer")]
     [Tooltip("The range of time before the cat starts needing food or petting")]
@@ -58,39 +59,52 @@ public class Cat : MonoBehaviour, IInteractable
     /// <param name="player"></param>
     public void Interact(Player player)
     {
+        if (isShooedAway) return; // can't interact with cat if it's shooed away 
+
         switch (location)
         {
             case CatLocation.Alley:
-                if (needsPet)
+                if (needsPet) {
+                    player.interactingWithCat = true;
                     Pet();
+                    player.interactingWithCat = false;
+                }
                 break;
             case CatLocation.Held:
+                player.interactingWithCat = true;
                 Drop(player);
+                player.interactingWithCat = false;
                 break;
         }
     }
 
     public void InteractHold(Player player, float deltaTime)
     {
+        if (isShooedAway) return; // can't interact with cat if it's shooed away
+
         // player can only feed cat in alley, if cat needs food, and if player is holding food
         if (location == CatLocation.Alley && needsFood && player.heldItem != null)
         {
+            player.interactingWithCat = true;
             timerProgress += deltaTime;
             UpdateProgressBar();
             if (timerProgress >= feedDuration)
             {
                 Feed(player);
                 timerProgress = 0f; // reset timer after feeding
+                player.interactingWithCat = false;
             }
         }
         else if (location == CatLocation.Kitchen)
         {
+            player.interactingWithCat = true;
             timerProgress += deltaTime;
             UpdateProgressBar();
             if (timerProgress >= pickUpDuration)
             {
                 PickUp(player);
                 timerProgress = 0f; // reset timer after picking up
+                player.interactingWithCat = false;
             }
         }
     }
@@ -166,6 +180,8 @@ public class Cat : MonoBehaviour, IInteractable
     {
         // Only update if the day has begun
         if (!GameManager.Instance.dayManager.isDayActive) return;
+
+        if (isShooedAway) return;
 
         UpdateNeeds();
     }
@@ -248,11 +264,13 @@ public class Cat : MonoBehaviour, IInteractable
 
     public void OnHoverEnter()
     {
+        if (isShooedAway) return; // can't interact with cat if it's shooed away
         if (hoverIndicator != null) hoverIndicator.SetActive(true);
     }
 
     public void OnHoverExit()
     {
+        if (isShooedAway) return; // can't interact with cat if it's shooed away
         if (hoverIndicator != null) hoverIndicator.SetActive(false);
         timerProgress = 0f; // reset interaction timer if player walks away
         progressBar.SetActive(false); // hide progress bar when not interacting

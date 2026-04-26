@@ -41,11 +41,13 @@ public class ManagerNPC : MonoBehaviour
     float patrolTimer = 0f;
     bool investigating = false; // if manager is currently investigating a meow
     float shooTimer = 0f; // how long manager has been shooing cats for
+    float originalSpeed; // to reset speed after shooing
 
     void Start()
     {
         caughtLabel.SetActive(false);
         meowLabel.SetActive(false);
+        originalSpeed = speed;
     }
 
     /// <summary>
@@ -145,8 +147,8 @@ public class ManagerNPC : MonoBehaviour
             Vector3 nextDir = (patrolPoints[nextPatrolIndex].position - transform.position).normalized;
             transform.rotation = Quaternion.LookRotation(nextDir);
             
-            // if investigating, don't wait, go straight to next point
-            if (patrolTimer >= howLongToWaitAtPoint || investigating) // Wait for 2 seconds at the poin
+            // if investigating, don't wait, go straight to next point if not already at alley entrance
+            if (patrolTimer >= howLongToWaitAtPoint || (investigating && (currentPatrolIndex != alleyEntranceIndex))) // Wait for 2 seconds at the poin
             {
                 patrolTimer = 0f;
                 currentPatrolIndex = nextPatrolIndex; // move to next patrol point
@@ -158,6 +160,13 @@ public class ManagerNPC : MonoBehaviour
 
     void UpdateShoo()
     {
+        if (GameManager.Instance.player.interactingWithCat || GameManager.Instance.alleyZone.playerInAlley)
+        {
+            // trying to shoo but caught player with cat in alley
+            LosePatienceFromCaughtWithCat();
+            Debug.Log("caught player with cat in alley while trying to shoo");
+        }
+
         // if cats in the alley and manager is at alley, shoo all the cats away
         if (inAlley)
         {
@@ -179,7 +188,7 @@ public class ManagerNPC : MonoBehaviour
                 investigating = false;
                 patrolDirection = 1; // reset patrol direction
                 // make manager go back to normal speed
-                speed /= 1.5f;
+                speed = originalSpeed;
                 meowLabel.SetActive(false);
             }
         }
@@ -191,8 +200,9 @@ public class ManagerNPC : MonoBehaviour
     /// <param name="cat"></param>
     public void NotifyPlayerInteractedWithCat(Cat cat)
     {
+
         // if player interacts with cat in alley when manager is in the alley
-        if (inAlley && cat.location == CatLocation.Alley)
+        if (inAlley || investigating)
         {
             caughtLabel.SetActive(true);
             LosePatienceFromCaughtWithCat();
@@ -222,7 +232,7 @@ public class ManagerNPC : MonoBehaviour
         int bestDir = 1; // default to going forward
         int bestDist = int.MaxValue;
 
-        // make manager go faster!
+        // make manager go faster! (lol funny bug where more meows make manager go even faster. funny chaos so keeping it)
         speed *= 1.5f;
 
         // change direction to closest alley entrance
@@ -230,12 +240,12 @@ public class ManagerNPC : MonoBehaviour
         int distanceToAlleyGoingForward = (alleyEntranceIndex - currentPatrolIndex + patrolPoints.Length) % patrolPoints.Length;
         int distanceToAlleyGoingBackward = (currentPatrolIndex - alleyEntranceIndex + patrolPoints.Length) % patrolPoints.Length;
 
-        if (distanceToAlleyGoingForward < bestDist)
+        if (distanceToAlleyGoingForward <= distanceToAlleyGoingBackward && distanceToAlleyGoingForward < bestDist)
         {
             bestDist = distanceToAlleyGoingForward;
             bestDir = 1;
         }
-        else if (distanceToAlleyGoingBackward < bestDist)
+        else if (distanceToAlleyGoingBackward < distanceToAlleyGoingForward && distanceToAlleyGoingBackward < bestDist)
         {
             bestDist = distanceToAlleyGoingBackward;
             bestDir = -1;
