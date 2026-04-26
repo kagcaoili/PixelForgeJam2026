@@ -145,6 +145,7 @@ Transform:
   m_Children:
   - {fileID: 8862437234839345112}
   - {fileID: 2146750959600384504}
+  - {fileID: 7702187126549994456}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2577347709977453871
@@ -250,6 +251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tuna
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5b548e9ebbdb440528263c53ccd2d6ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -259,4 +264,66 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5b548e9ebbdb440528263c53ccd2d6ce, type: 3}
   m_PrefabInstance: {fileID: 1891639261460487699}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7883853647780789299
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7955696384139062450}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 33.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.14
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.32
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+      propertyPath: m_Name
+      value: TunaSashimiFR
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+--- !u!4 &7702187126549994456 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ad30d24452e5def49a7ef6deb2533042, type: 3}
+  m_PrefabInstance: {fileID: 7883853647780789299}
   m_PrefabAsset: {fileID: 0}
