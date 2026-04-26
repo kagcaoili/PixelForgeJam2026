@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     // The item that the player is currently holding, null if not holding anything
     public Item heldItem { get; private set; }
     public Cat heldCat { get; private set; } // cant hold item and cat at same time
+    public bool interactingWithCat = false;
 
     Vector3 originalPosition; // Used for resetting player position and rotation at new game
     Vector3 originalRotation;

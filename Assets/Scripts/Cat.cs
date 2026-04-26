@@ -64,11 +64,16 @@ public class Cat : MonoBehaviour, IInteractable
         switch (location)
         {
             case CatLocation.Alley:
-                if (needsPet)
+                if (needsPet) {
+                    player.interactingWithCat = true;
                     Pet();
+                    player.interactingWithCat = false;
+                }
                 break;
             case CatLocation.Held:
+                player.interactingWithCat = true;
                 Drop(player);
+                player.interactingWithCat = false;
                 break;
         }
     }
@@ -80,22 +85,26 @@ public class Cat : MonoBehaviour, IInteractable
         // player can only feed cat in alley, if cat needs food, and if player is holding food
         if (location == CatLocation.Alley && needsFood && player.heldItem != null)
         {
+            player.interactingWithCat = true;
             timerProgress += deltaTime;
             UpdateProgressBar();
             if (timerProgress >= feedDuration)
             {
                 Feed(player);
                 timerProgress = 0f; // reset timer after feeding
+                player.interactingWithCat = false;
             }
         }
         else if (location == CatLocation.Kitchen)
         {
+            player.interactingWithCat = true;
             timerProgress += deltaTime;
             UpdateProgressBar();
             if (timerProgress >= pickUpDuration)
             {
                 PickUp(player);
                 timerProgress = 0f; // reset timer after picking up
+                player.interactingWithCat = false;
             }
         }
     }

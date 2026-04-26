@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public GameObject endDayUI;
     public GameObject gameOverUI;
 
+    [Header("Zones")]
+    public AlleyZone alleyZone;
+
     public int Score { get; private set; }
     public bool GameOver { get; private set; } = false;
 
