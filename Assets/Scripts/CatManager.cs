@@ -21,13 +21,13 @@ public class CatManager : MonoBehaviour
         // Only update if the day has begun
         if (!GameManager.Instance.dayManager.isDayActive) return;
 
-        if (activeCats.Count >= spawnPoints.Length) return; // no more space
-
         if (isShooing)
         {
             ShooCats();
             return; // don't spawn new cats while shooing
         }
+
+        if (activeCats.Count >= spawnPoints.Length) return; // no more space
 
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= spawnInterval)
@@ -71,7 +71,9 @@ public class CatManager : MonoBehaviour
         for(int i = activeCats.Count - 1; i >= 0; i--)
         {
             Cat cat = activeCats[i];
+            cat.isShooedAway = true;
             cat.ClearNeeds();
+            cat.transform.parent = null;
 
             // move cat to exit point and then remove it
             cat.transform.position = Vector3.MoveTowards(cat.transform.position, exitPoint.position, shooSpeed * Time.deltaTime);
@@ -85,6 +87,9 @@ public class CatManager : MonoBehaviour
                 RemoveCat(cat);
             }
         }
-        isShooing = false;
+
+        // if all cats are gone, stop shooing
+        if (activeCats.Count == 0)
+            isShooing = false;
     }
 }
