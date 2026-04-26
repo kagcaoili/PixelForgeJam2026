@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AlleyZone : MonoBehaviour
 {
-    public bool playerInAlley { get; private set; }
+    public bool playerInAlley;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
