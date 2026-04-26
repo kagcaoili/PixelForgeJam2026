@@ -12,6 +12,8 @@ public class CatManager : MonoBehaviour
     List<Cat> activeCats = new List<Cat>();
     public float spawnTimer;
 
+    private bool isShooing = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -20,6 +22,12 @@ public class CatManager : MonoBehaviour
         if (!GameManager.Instance.dayManager.isDayActive) return;
 
         if (activeCats.Count >= spawnPoints.Length) return; // no more space
+
+        if (isShooing)
+        {
+            ShooCats();
+            return; // don't spawn new cats while shooing
+        }
 
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= spawnInterval)
@@ -51,9 +59,15 @@ public class CatManager : MonoBehaviour
         Destroy(cat.gameObject);
     }
 
-    public void ShooCats()
+    public void NotifyShooCats()
     {
         Debug.Log("Shooing cats away!");
+        isShooing = true;
+    }
+
+    void ShooCats()
+    {
+        if (!isShooing) return;
         for(int i = activeCats.Count - 1; i >= 0; i--)
         {
             Cat cat = activeCats[i];
@@ -71,5 +85,6 @@ public class CatManager : MonoBehaviour
                 RemoveCat(cat);
             }
         }
+        isShooing = false;
     }
 }

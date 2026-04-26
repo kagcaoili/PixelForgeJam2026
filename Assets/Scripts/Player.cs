@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
             // Checks if the hit object or its parent has an Interactable component
             if (hit.TryGetComponent(out IInteractable target))
             {
-                Debug.Log("Found interactable: " + hit.name);
+                //Debug.Log("Found interactable: " + hit.name);
                 float dist = Vector3.Distance(transform.position, hit.transform.position);
                 if (dist < bestDist)
                 {
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
                 }
             } else if (hit.GetComponentInParent<IInteractable>() != null)
             {
-                Debug.Log("Found interactable in parent: " + hit.name);
+                //Debug.Log("Found interactable in parent: " + hit.name);
                 IInteractable parentTarget = hit.GetComponentInParent<IInteractable>();
                 float dist = Vector3.Distance(transform.position, hit.transform.position);
                 if (dist < bestDist)

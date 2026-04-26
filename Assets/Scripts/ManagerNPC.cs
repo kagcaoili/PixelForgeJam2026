@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 /// <summary>
@@ -21,24 +20,33 @@ public class ManagerNPC : MonoBehaviour
     [Tooltip("The points the manager will patrol between when walking around")]
     public Transform[] patrolPoints;
     [Tooltip("Indices of patrol points that are entrances to alley. Manager will invesigate to closest one if they hear a cat meow")]
-    public int[] alleyEntranceIndices;
+    public int alleyEntranceIndex = 3;
     [Tooltip("How long the manager will wait at each patrol point before moving to the next one")]
     public float howLongToWaitAtPoint = 2f;
+    public float howLongToShooCats = 7f; // how long manager will spend shooing cats before going back to normal patrol
 
     [Header("UI")]
     public TextMeshProUGUI patienceText;
+    public GameObject caughtLabel; // shown when player is caught with cat in alley
+    public GameObject meowLabel; // shown when manager hears meow and is investigating
 
     public float Patience { get; private set; }
     float maxPatience; // obtained from Day data
 
-    public bool inAlley => System.Array.IndexOf(alleyEntranceIndices, waitingAtPointIndex) >= 0;
+    public bool inAlley => waitingAtPointIndex == alleyEntranceIndex;
     int patrolDirection = 1; // 1 for forward, -1 for backward through patrol points
 
     int currentPatrolIndex = 0; // traveling
     int waitingAtPointIndex = -1; // -1 means not currently waiting, index of patrol point waiting
     float patrolTimer = 0f;
+    bool investigating = false; // if manager is currently investigating a meow
+    float shooTimer = 0f; // how long manager has been shooing cats for
 
-    Transform investigatePoint;
+    void Start()
+    {
+        caughtLabel.SetActive(false);
+        meowLabel.SetActive(false);
+    }
 
     /// <summary>
     /// Called by DayManager at the start of each day to initialize patience values and UI
@@ -109,6 +117,7 @@ public class ManagerNPC : MonoBehaviour
         if (!GameManager.Instance.dayManager.isDayActive) return;
 
         UpdatePatrol();
+        UpdateInvestigation();
         UpdateShoo();
     }
 
@@ -132,15 +141,17 @@ public class ManagerNPC : MonoBehaviour
             waitingAtPointIndex = currentPatrolIndex; // update index its waiting
 
             // look in direction of next patrol point while waiting
-            int nextPatrolIndex = (currentPatrolIndex + 1 + patrolPoints.Length) % patrolPoints.Length;
+            int nextPatrolIndex = (currentPatrolIndex + patrolDirection + patrolPoints.Length) % patrolPoints.Length;
             Vector3 nextDir = (patrolPoints[nextPatrolIndex].position - transform.position).normalized;
             transform.rotation = Quaternion.LookRotation(nextDir);
             
-            if (patrolTimer >= howLongToWaitAtPoint) // Wait for 2 seconds at the point
+            // if investigating, don't wait, go straight to next point
+            if (patrolTimer >= howLongToWaitAtPoint || investigating) // Wait for 2 seconds at the poin
             {
                 patrolTimer = 0f;
                 currentPatrolIndex = nextPatrolIndex; // move to next patrol point
                 waitingAtPointIndex = -1; // no longer waiting
+                if (caughtLabel.activeSelf) caughtLabel.SetActive(false); // hide caught label when moving again
             }
         }
     }
@@ -150,7 +161,27 @@ public class ManagerNPC : MonoBehaviour
         // if cats in the alley and manager is at alley, shoo all the cats away
         if (inAlley)
         {
-            GameManager.Instance.catManager.ShooCats();
+            GameManager.Instance.catManager.NotifyShooCats();
+        }
+    }
+
+    void UpdateInvestigation()
+    {
+        if (!investigating) return;
+
+        // if manager is at alley entrance, shoo cats and stop investigating
+        if (inAlley)
+        {
+            shooTimer += Time.deltaTime;
+            if (shooTimer >= howLongToShooCats)
+            {
+                shooTimer = 0f;
+                investigating = false;
+                patrolDirection = 1; // reset patrol direction
+                // make manager go back to normal speed
+                speed /= 1.5f;
+                meowLabel.SetActive(false);
+            }
         }
     }
 
@@ -163,6 +194,7 @@ public class ManagerNPC : MonoBehaviour
         // if player interacts with cat in alley when manager is in the alley
         if (inAlley && cat.location == CatLocation.Alley)
         {
+            caughtLabel.SetActive(true);
             LosePatienceFromCaughtWithCat();
             Debug.Log("Manager caught you with a cat in alley");
         }
@@ -174,7 +206,43 @@ public class ManagerNPC : MonoBehaviour
     /// <param name="cat"></param>
     public void NotifyMeow(Cat cat)
     {
-        
+        investigating = true;
+        meowLabel.SetActive(true);
+
+        // if waiting at alley entrance, just stay there and shoo cats
+        if (inAlley)
+        {
+            UpdateShoo();
+            investigating = false;
+            patrolDirection = 1; // reset patrol direction
+            meowLabel.SetActive(false);
+            return;
+        }
+
+        int bestDir = 1; // default to going forward
+        int bestDist = int.MaxValue;
+
+        // make manager go faster!
+        speed *= 1.5f;
+
+        // change direction to closest alley entrance
+
+        int distanceToAlleyGoingForward = (alleyEntranceIndex - currentPatrolIndex + patrolPoints.Length) % patrolPoints.Length;
+        int distanceToAlleyGoingBackward = (currentPatrolIndex - alleyEntranceIndex + patrolPoints.Length) % patrolPoints.Length;
+
+        if (distanceToAlleyGoingForward < bestDist)
+        {
+            bestDist = distanceToAlleyGoingForward;
+            bestDir = 1;
+        }
+        else if (distanceToAlleyGoingBackward < bestDist)
+        {
+            bestDist = distanceToAlleyGoingBackward;
+            bestDir = -1;
+        }
+
+        patrolDirection = bestDir;
+        //investigating = false;
     }
 
 

@@ -42,6 +42,7 @@ public class Cat : MonoBehaviour, IInteractable
     public GameObject hoverIndicator;
     public Image progressBarFill;
     public GameObject progressBar;
+    public GameObject meowLabel;
 
     private float timerProgress; // for interactions
     private float needyTimer; // how long the cat has been needy for
@@ -158,6 +159,7 @@ public class Cat : MonoBehaviour, IInteractable
 
         if (progressBar != null) progressBar.SetActive(false);
         if (hoverIndicator != null) hoverIndicator.SetActive(false);
+        if (meowLabel != null) meowLabel.SetActive(false);
     }
 
     void Update()
@@ -185,9 +187,11 @@ public class Cat : MonoBehaviour, IInteractable
             if (!hasMeowed && needyTimer >= meowAfterSeconds)
             {
                 Debug.Log("Cat has meowed!");
+                meowLabel.SetActive(true);
                 GameManager.Instance.managerNPC.NotifyMeow(this);
                 hasMeowed = true;
             }
+            return;
         }
 
         PickNeed();
@@ -273,6 +277,8 @@ public class Cat : MonoBehaviour, IInteractable
         }
     }
 
+    /*
+    // This didn't work, pick up logic for later?
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Kitchen"))
@@ -288,6 +294,7 @@ public class Cat : MonoBehaviour, IInteractable
             inKitchen = false;
         }
     }
+    */
 }
 
 public enum CatLocation
