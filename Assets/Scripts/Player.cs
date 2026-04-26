@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     // The item that the player is currently holding, null if not holding anything
     public Item heldItem { get; private set; }
+    public Cat heldCat { get; private set; } // cant hold item and cat at same time
 
     Vector3 originalPosition; // Used for resetting player position and rotation at new game
     Vector3 originalRotation;
@@ -70,6 +71,12 @@ public class Player : MonoBehaviour
     /// </summary>
     void UpdateInteraction()
     {
+        // check if current target is destroyed to clear it
+        if (currentTarget != null && (currentTarget as UnityEngine.Object) == null)
+        {
+            currentTarget = null;
+        }
+
         Collider[] hits = Physics.OverlapSphere(transform.position, interactableRange);
         // look for closest hit
         float bestDist = float.MaxValue;
@@ -79,7 +86,7 @@ public class Player : MonoBehaviour
             // Checks if the hit object or its parent has an Interactable component
             if (hit.TryGetComponent(out IInteractable target))
             {
-                Debug.Log("Found interactable: " + hit.name);
+                //Debug.Log("Found interactable: " + hit.name);
                 float dist = Vector3.Distance(transform.position, hit.transform.position);
                 if (dist < bestDist)
                 {
@@ -88,7 +95,7 @@ public class Player : MonoBehaviour
                 }
             } else if (hit.GetComponentInParent<IInteractable>() != null)
             {
-                Debug.Log("Found interactable in parent: " + hit.name);
+                //Debug.Log("Found interactable in parent: " + hit.name);
                 IInteractable parentTarget = hit.GetComponentInParent<IInteractable>();
                 float dist = Vector3.Distance(transform.position, hit.transform.position);
                 if (dist < bestDist)
@@ -99,8 +106,8 @@ public class Player : MonoBehaviour
             }
         }
 
-        Debug.Log("Best target: " + (bestTarget != null ? bestTarget.ToString() : "null"));
-        Debug.Log("Current target: " + (currentTarget != null ? currentTarget.ToString() : "null"));
+        //Debug.Log("Best target: " + (bestTarget != null ? bestTarget.ToString() : "null"));
+        //Debug.Log("Current target: " + (currentTarget != null ? currentTarget.ToString() : "null"));
         // Hover logic
         if (bestTarget != currentTarget)
         {
@@ -125,6 +132,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    #region Item Handling
     public void Hold(Item item)
     {
         heldItem = item;
@@ -150,6 +158,24 @@ public class Player : MonoBehaviour
         heldItem = null;
         return item;
     }
+    #endregion
+
+    #region Cat Handling
+    public void HoldCat(Cat cat)
+    {
+        heldCat = cat;
+        cat.transform.parent = holdPoint;
+        cat.transform.localPosition = Vector3.zero;
+    }
+
+    public void DropCat()
+    {
+        if (heldCat == null) return;
+
+        heldCat.transform.parent = null;
+        heldCat = null;
+    }
+    #endregion
 
     public void Reset()
     {

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public DayManager dayManager;
     public ManagerNPC managerNPC;
     public Player player;
+    public CatManager catManager;
 
     [Header("UI References")]
     public TextMeshProUGUI scoreText;
