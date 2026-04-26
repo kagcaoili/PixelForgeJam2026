@@ -61,7 +61,7 @@ public class CatManager : MonoBehaviour
 
     public void NotifyShooCats()
     {
-        Debug.Log("Shooing cats away!");
+        //Debug.Log("Shooing cats away!");
         isShooing = true;
     }
 
