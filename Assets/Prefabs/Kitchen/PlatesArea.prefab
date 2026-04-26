@@ -121,6 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6967630264389714096}
+  - component: {fileID: 568165975775038086}
   m_Layer: 0
   m_Name: PlatesArea
   m_TagString: Untagged
@@ -145,6 +146,27 @@ Transform:
   - {fileID: 4476779653147512916}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &568165975775038086
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6120170283300245522}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.654694, y: 2.1164892, z: 3.115965}
+  m_Center: {x: 0.14796948, y: -0.40916836, z: -0.054016113}
 --- !u!1001 &2852039861792891704
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -422,6 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3116022041180135771}
   - component: {fileID: 6749007395306531811}
+  - component: {fileID: 1847979871777647490}
   m_Layer: 0
   m_Name: FryerArea
   m_TagString: Untagged
@@ -474,6 +475,27 @@ MonoBehaviour:
   hoverIndicator: {fileID: 1900687811968131118}
   progressBarFill: {fileID: 2994009541659623415}
   progressBar: {fileID: 4972404327781746669}
+--- !u!65 &1847979871777647490
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4182412225035412334}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.8263507, y: 2.1164892, z: 3.115965}
+  m_Center: {x: -0.86500907, y: -0.40916836, z: -0.054016113}
 --- !u!1 &4972404327781746669
 GameObject:
   m_ObjectHideFlags: 0

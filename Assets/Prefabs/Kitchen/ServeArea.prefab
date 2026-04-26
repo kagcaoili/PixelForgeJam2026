@@ -347,6 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797517040944613736}
   - component: {fileID: 5842954246442014797}
+  - component: {fileID: 8434017519567350159}
   m_Layer: 0
   m_Name: ServeArea
   m_TagString: Untagged
@@ -391,6 +392,27 @@ MonoBehaviour:
   hoverIndicator: {fileID: 7470349167644836475}
   progressBarFill: {fileID: 0}
   progressBar: {fileID: 0}
+--- !u!65 &8434017519567350159
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7569643475897623425}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.0312843, y: 2.1164892, z: 3.115965}
+  m_Center: {x: -0.04032612, y: -0.40916836, z: -0.054016113}
 --- !u!1001 &3222544844022535636
 PrefabInstance:
   m_ObjectHideFlags: 0

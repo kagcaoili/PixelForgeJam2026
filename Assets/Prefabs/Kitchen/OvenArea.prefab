@@ -316,6 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3116022041180135771}
   - component: {fileID: 2844716385338992526}
+  - component: {fileID: 6969221291074493859}
   m_Layer: 0
   m_Name: OvenArea
   m_TagString: Untagged
@@ -368,6 +369,27 @@ MonoBehaviour:
   hoverIndicator: {fileID: 2818193874298930071}
   progressBarFill: {fileID: 669045067726886861}
   progressBar: {fileID: 6411575519888798371}
+--- !u!65 &6969221291074493859
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4182412225035412334}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.6659613, y: 2.1164892, z: 3.115965}
+  m_Center: {x: -0.95556307, y: -0.40916836, z: -0.054016113}
 --- !u!1 &4410771641233912305
 GameObject:
   m_ObjectHideFlags: 0

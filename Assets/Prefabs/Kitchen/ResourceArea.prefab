@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4245241578091951338}
   - component: {fileID: 8891473271027215265}
+  - component: {fileID: 7990729871791443550}
   m_Layer: 0
   m_Name: ResourceArea
   m_TagString: Untagged
@@ -48,6 +49,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceArea
   resourceItem: {fileID: 2577347709977453871, guid: feefa69a3108a4ec0aa0f0a52e077db3, type: 3}
+--- !u!65 &7990729871791443550
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439163485644555317}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.6965327, y: 2.1164892, z: 3.115965}
+  m_Center: {x: 0.12704992, y: -0.40916836, z: -0.054016113}
 --- !u!1 &5976624008802566542
 GameObject:
   m_ObjectHideFlags: 0
