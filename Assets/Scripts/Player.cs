@@ -106,8 +106,8 @@ public class Player : MonoBehaviour
             }
         }
 
-        Debug.Log("Best target: " + (bestTarget != null ? bestTarget.ToString() : "null"));
-        Debug.Log("Current target: " + (currentTarget != null ? currentTarget.ToString() : "null"));
+        //Debug.Log("Best target: " + (bestTarget != null ? bestTarget.ToString() : "null"));
+        //Debug.Log("Current target: " + (currentTarget != null ? currentTarget.ToString() : "null"));
         // Hover logic
         if (bestTarget != currentTarget)
         {

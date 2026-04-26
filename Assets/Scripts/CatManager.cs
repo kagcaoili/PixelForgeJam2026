@@ -6,6 +6,8 @@ public class CatManager : MonoBehaviour
     public Cat catPrefab;
     public Transform[] spawnPoints;
     public float spawnInterval = 10f;
+    public Transform exitPoint; // where cats go when manager shoos them away
+    public float shooSpeed = 5f;
 
     List<Cat> activeCats = new List<Cat>();
     public float spawnTimer;
@@ -47,5 +49,27 @@ public class CatManager : MonoBehaviour
     {
         activeCats.Remove(cat);
         Destroy(cat.gameObject);
+    }
+
+    public void ShooCats()
+    {
+        Debug.Log("Shooing cats away!");
+        for(int i = activeCats.Count - 1; i >= 0; i--)
+        {
+            Cat cat = activeCats[i];
+            cat.ClearNeeds();
+
+            // move cat to exit point and then remove it
+            cat.transform.position = Vector3.MoveTowards(cat.transform.position, exitPoint.position, shooSpeed * Time.deltaTime);
+            Vector3 dir = (exitPoint.position - cat.transform.position).normalized;
+            if (dir.sqrMagnitude > 0f)
+            {
+                cat.transform.rotation = Quaternion.LookRotation(dir);
+            }
+            if (Vector3.Distance(cat.transform.position, exitPoint.position) < 0.1f)
+            {
+                RemoveCat(cat);
+            }
+        }
     }
 }

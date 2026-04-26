@@ -25,6 +25,8 @@ public class Cat : MonoBehaviour, IInteractable
     [Tooltip("The range of time before the cat starts needing food or petting")]
     public float minIdleTime = 5f;
     public float maxIdleTime = 15f;
+    [Tooltip("Unsatisfied cat will meow after this many seconds")]
+    public float meowAfterSeconds = 10f;
 
     [Header("Interaction Timers")]
     [Tooltip("How long the player needs to hold to feed the cat")]
@@ -33,7 +35,7 @@ public class Cat : MonoBehaviour, IInteractable
     public float pickUpDuration = 3f;
 
     [Header("State")]
-    public CatLocation location = CatLocation.Alley; // start in the alley
+    public CatLocation location => isHeld ? CatLocation.Held : inKitchen ? CatLocation.Kitchen : CatLocation.Alley;
     public GameObject needLabelRoot;
     public TextMeshPro needLabel;
     [Tooltip("Indicator that shows if player is eligible to interact with it")]
@@ -42,7 +44,12 @@ public class Cat : MonoBehaviour, IInteractable
     public GameObject progressBar;
 
     private float timerProgress; // for interactions
+    private float needyTimer; // how long the cat has been needy for
     //private float nextNeedTime; // randomized time betwen min and max 
+
+    private bool inKitchen = false;
+    private bool isHeld = false;
+    private bool hasMeowed = false;
 
     /// <summary>
     /// Called when players interacts with the cat
@@ -95,6 +102,8 @@ public class Cat : MonoBehaviour, IInteractable
         Debug.Log("You fed the cat! Score +" + scoreFeedValue);
         GameManager.Instance.AddScore(scoreFeedValue);
 
+        GameManager.Instance.managerNPC.NotifyPlayerInteractedWithCat(this);
+
         // get rid of food
         var item = player.TakeHeldItem();
         Destroy(item.gameObject);
@@ -110,6 +119,7 @@ public class Cat : MonoBehaviour, IInteractable
     {
         Debug.Log("You pet the cat! Score +" + scorePetValue);
         GameManager.Instance.AddScore(scorePetValue);
+        GameManager.Instance.managerNPC.NotifyPlayerInteractedWithCat(this); 
 
         // reset needs
         //needsPet = false;
@@ -132,15 +142,14 @@ public class Cat : MonoBehaviour, IInteractable
             return;
         }
         player.HoldCat(this);
-        location = CatLocation.Held;
+        isHeld = true;
     }
 
     void Drop(Player player)
     {
         Debug.Log("Drop cat");
         player.DropCat();
-
-        // TODO: need to update location based on where it is dropped?
+        isHeld = false;
     }
     void Start()
     {
@@ -165,17 +174,32 @@ public class Cat : MonoBehaviour, IInteractable
         if (location != CatLocation.Alley) return;
 
         // already needs something. needy cat
-        if (needsAttention) return;
+        if (needsAttention)
+        {
+            if (!hasMeowed)
+            {
+                needyTimer += Time.deltaTime;
+            }
+
+            // if cat has been needy for more than meowAfterSeconds, meow and alert manager
+            if (!hasMeowed && needyTimer >= meowAfterSeconds)
+            {
+                Debug.Log("Cat has meowed!");
+                GameManager.Instance.managerNPC.NotifyMeow(this);
+                hasMeowed = true;
+            }
+        }
+
+        PickNeed();
 
         //if (Time.time >= nextNeedTime)
         //{
         //    PickNextNeed();
         //}
-        PickNextNeed();
 
     }
 
-    void PickNextNeed()
+    void PickNeed()
     {
         // choose randomly between pets and food need
         if (Random.value < 0.5f)
@@ -189,6 +213,13 @@ public class Cat : MonoBehaviour, IInteractable
             Debug.Log("Cat now needs petting!");
         }
 
+        UpdateNeedLabel();
+    }
+
+    public void ClearNeeds()
+    {
+        needsFood = false;
+        needsPet = false;
         UpdateNeedLabel();
     }
 
@@ -239,6 +270,22 @@ public class Cat : MonoBehaviour, IInteractable
         if (needsFood)
         {
             progressBarFill.fillAmount = timerProgress / feedDuration;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Kitchen"))
+        {
+            inKitchen = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Kitchen"))
+        {
+            inKitchen = false;
         }
     }
 }
