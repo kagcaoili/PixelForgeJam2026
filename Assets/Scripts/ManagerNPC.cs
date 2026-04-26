@@ -42,6 +42,7 @@ public class ManagerNPC : MonoBehaviour
     bool investigating = false; // if manager is currently investigating a meow
     float shooTimer = 0f; // how long manager has been shooing cats for
     float originalSpeed; // to reset speed after shooing
+    bool caughtPlayer = false; // prevents spamming of caught if player is standing in alley
 
     void Start()
     {
@@ -139,7 +140,10 @@ public class ManagerNPC : MonoBehaviour
         // Wait at the spot before moving to next one
         if (Vector3.Distance(transform.position, targetPoint.position) < 0.1f)
         {
-            patrolTimer += Time.deltaTime;
+            bool stillShooing = investigating && currentPatrolIndex == alleyEntranceIndex;
+            // if shooing, keep waiting at alley entrance until done shooing
+            if (!stillShooing) patrolTimer += Time.deltaTime;
+
             waitingAtPointIndex = currentPatrolIndex; // update index its waiting
 
             // look in direction of next patrol point while waiting
@@ -160,18 +164,25 @@ public class ManagerNPC : MonoBehaviour
 
     void UpdateShoo()
     {
-        if (GameManager.Instance.player.interactingWithCat || GameManager.Instance.alleyZone.playerInAlley)
+        if (!inAlley) 
+        {   
+            caughtPlayer = false; // reset caught player when manager leaves alley
+            return; // can only shoo cats if manager is in the alley
+        }
+
+        // if player is even IN the alley, lose patience
+        //if (GameManager.Instance.player.interactingWithCat || GameManager.Instance.alleyZone.playerInAlley)
+        if (!caughtPlayer && GameManager.Instance.alleyZone.playerInAlley)
         {
+            caughtPlayer = true;
             // trying to shoo but caught player with cat in alley
             LosePatienceFromCaughtWithCat();
+            caughtLabel.SetActive(true);
             Debug.Log("caught player with cat in alley while trying to shoo");
         }
 
         // if cats in the alley and manager is at alley, shoo all the cats away
-        if (inAlley)
-        {
-            GameManager.Instance.catManager.NotifyShooCats();
-        }
+        GameManager.Instance.catManager.NotifyShooCats();
     }
 
     void UpdateInvestigation()
