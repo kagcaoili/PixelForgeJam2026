@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject rightPanelUI;
     public GameObject endDayUI;
     public GameObject gameOverUI;
+    public GameObject firstDayTutorialUI;
 
     [Header("Zones")]
     public AlleyZone alleyZone;
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         rightPanelUI.SetActive(true);
         endDayUI.SetActive(false);
         gameOverUI.SetActive(false);
+        firstDayTutorialUI.SetActive(false);
 
         dayManager.StartDay(0); // Start the first day
         Time.timeScale = 1f; // Ensure game is running at normal speed
@@ -77,6 +79,7 @@ public class GameManager : MonoBehaviour
         leftPanelUI.SetActive(true);
         rightPanelUI.SetActive(true);
         gameOverUI.SetActive(false);
+        firstDayTutorialUI.SetActive(false);
 
         dayManager.ContinueToNextDay();
     }
@@ -91,6 +94,7 @@ public class GameManager : MonoBehaviour
         rightPanelUI.SetActive(false);
         endDayUI.SetActive(true);
         gameOverUI.SetActive(false);
+        firstDayTutorialUI.SetActive(false);
 
         Time.timeScale = 0f; // Pause the game
     }
@@ -103,8 +107,19 @@ public class GameManager : MonoBehaviour
         rightPanelUI.SetActive(false);
         endDayUI.SetActive(false);
         gameOverUI.SetActive(true);
+        firstDayTutorialUI.SetActive(false);
 
         Time.timeScale = 0f; // Pause the game
+    }
+
+    public void ShowFirstDayTutorial()
+    {
+        mainMenuUI.SetActive(false);
+        leftPanelUI.SetActive(false);
+        rightPanelUI.SetActive(false);
+        endDayUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        firstDayTutorialUI.SetActive(true);
     }
 
     public void ResetGame()

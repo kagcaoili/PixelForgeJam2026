@@ -1575,7 +1575,7 @@ GameObject:
   - component: {fileID: 871519462}
   - component: {fileID: 871519465}
   - component: {fileID: 871519464}
-  - component: {fileID: 871519463}
+  - component: {fileID: 871519466}
   m_Layer: 5
   m_Name: FirstDay
   m_TagString: Untagged
@@ -1604,21 +1604,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &871519463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871519461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a6e3319663f4ef9b5966ee9ddf0776, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EndDayButtons
-  PlayButton: {fileID: 0}
-  ExitButton: {fileID: 0}
-  SubtitleText: {fileID: 0}
 --- !u!114 &871519464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1657,6 +1642,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871519461}
   m_CullTransparentMesh: 1
+--- !u!114 &871519466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871519461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5d52afca3274244b1a4be88c398f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuButtons
 --- !u!1001 &902397498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3953,6 +3950,10 @@ PrefabInstance:
       propertyPath: rightPanelUI
       value: 
       objectReference: {fileID: 1901594666}
+    - target: {fileID: 3577051672470833191, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
+      propertyPath: firstDayTutorialUI
+      value: 
+      objectReference: {fileID: 871519461}
     - target: {fileID: 4347408244873787380, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: orderListParent
       value: 

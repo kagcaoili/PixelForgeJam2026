@@ -256,7 +256,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 296317113437931116}
         m_TargetAssemblyTypeName: MainMenuButtons, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: ShowFirstDayTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

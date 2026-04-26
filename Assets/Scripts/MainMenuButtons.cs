@@ -7,6 +7,11 @@ public class MainMenuButtons : MonoBehaviour
         GameManager.Instance.StartGame();
     }
 
+    public void ShowFirstDayTutorial()
+    {
+        GameManager.Instance.ShowFirstDayTutorial();
+    }
+
     public void ExitGame()
     {
         Application.Quit();
