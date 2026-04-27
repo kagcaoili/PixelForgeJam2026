@@ -57,7 +57,9 @@ public class Player : MonoBehaviour
         moveInput.x = kb.dKey.isPressed ? 1 : kb.aKey.isPressed ? -1 : 0;
         moveInput.z = kb.wKey.isPressed ? 1 : kb.sKey.isPressed ? -1 : 0;
 
-        rb.linearVelocity = moveInput.normalized * speed;
+        Vector3 vec = moveInput.normalized * speed;
+        vec.y = rb.linearVelocity.y; // preserve vertical velocity for jumping/gravity
+        rb.linearVelocity = vec;
 
         // Rotate player to face movement direction if moving
         if (moveInput.sqrMagnitude > 0.01f)
@@ -177,6 +179,8 @@ public class Player : MonoBehaviour
         heldCat = null;
     }
     #endregion
+
+    
 
     public void Reset()
     {
