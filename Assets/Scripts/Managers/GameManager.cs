@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public ManagerNPC managerNPC;
     public Player player;
     public CatManager catManager;
+    public MusicManager musicManager;
 
     [Header("UI References")]
     public TextMeshProUGUI scoreText;
