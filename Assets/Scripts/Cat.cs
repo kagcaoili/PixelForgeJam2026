@@ -205,6 +205,7 @@ public class Cat : MonoBehaviour, IInteractable
                 Debug.Log("Cat has meowed!");
                 meowLabel.SetActive(true);
                 GameManager.Instance.managerNPC.NotifyMeow(this);
+                GameManager.Instance.musicManager.PlayRandomMeow();
                 hasMeowed = true;
             }
             return;

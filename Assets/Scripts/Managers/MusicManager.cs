@@ -3,12 +3,14 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     public AudioSource musicSource;
+    public AudioSource sfxSource;
     [Header("Audio Clips")]
     public AudioClip bgMusic;
     public AudioClip[] meowSFX; // randomize between these for cat sounds
 
     [Header("Volume")]
     [Range(0f, 1f)] public float musicVolume = 0.5f;
+    [Range(0f, 1f)] public float meowSfx = 0.5f;
 
     void Start()
     {
@@ -22,8 +24,11 @@ public class MusicManager : MonoBehaviour
         musicSource.Play();
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlayRandomMeow()
     {
-        musicSource.PlayOneShot(clip, musicVolume);
+        if (meowSFX.Length == 0) return; // No clips assigned
+        int randomIndex = Random.Range(0, meowSFX.Length);
+        sfxSource.PlayOneShot(meowSFX[randomIndex], meowSfx);
+        Debug.Log("Played meow SFX: " + meowSFX[randomIndex].name);
     }
 }

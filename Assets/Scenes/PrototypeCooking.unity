@@ -552,6 +552,17 @@ Transform:
   - {fileID: 569249905}
   m_Father: {fileID: 1408601448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &179221665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3967718760147456976, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
+  m_PrefabInstance: {fileID: 2403340671860680292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd15376d1a015467d9f4110dea6b9d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
 --- !u!1 &180923958 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1658865631451313951, guid: 798d76ce73d1e4eeeb4cf8758d57e6f5, type: 3}
@@ -4477,6 +4488,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3777005538533842341}
     - target: {fileID: 3577051672470833191, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
+      propertyPath: musicManager
+      value: 
+      objectReference: {fileID: 179221665}
+    - target: {fileID: 3577051672470833191, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: rightPanelUI
       value: 
       objectReference: {fileID: 1901594666}
@@ -4484,6 +4499,10 @@ PrefabInstance:
       propertyPath: firstDayTutorialUI
       value: 
       objectReference: {fileID: 871519461}
+    - target: {fileID: 3967718760147456976, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
+      propertyPath: meowSfx
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4347408244873787380, guid: c0a99b68479e5475faf2fec201a57089, type: 3}
       propertyPath: orderListParent
       value: 
