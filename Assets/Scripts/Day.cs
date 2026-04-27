@@ -24,6 +24,9 @@ public class Day : ScriptableObject
     [Tooltip("How much patience the manager has for missed orders or cats on the counter before the day ends in failure")]
     public float patienceMeterStartAmount = 30f;
 
+    [Tooltip("Image shown on the end day panel, like new recipe")]
+    public Texture2D endDayImage;
+
     [Header("Objectives")]
     [Tooltip("Objectives to complete for this day")]
     public Objective[] objectives;

@@ -20,6 +20,7 @@ MonoBehaviour:
   orderSpawnInterval: 10
   maxActiveOrders: 3
   patienceMeterStartAmount: 30
+  endDayImage: {fileID: 2800000, guid: 29f63c488f4d4794197ddaf9f3fd1418, type: 3}
   objectives:
   - type: 0
     targetValue: 5

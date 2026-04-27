@@ -172,7 +172,7 @@ public class ManagerNPC : MonoBehaviour
             return; // can only shoo cats if manager is in the alley
         }
 
-        Debug.Log("Manager in alley, player in alley: " + GameManager.Instance.alleyZone.playerInAlley + ", player interacting with cat: " + GameManager.Instance.player.interactingWithCat + ", caughtPlayer: " + caughtPlayer);
+        //Debug.Log("Manager in alley, player in alley: " + GameManager.Instance.alleyZone.playerInAlley + ", player interacting with cat: " + GameManager.Instance.player.interactingWithCat + ", caughtPlayer: " + caughtPlayer);
 
         // if player is even IN the alley, lose patience
         //if (GameManager.Instance.player.interactingWithCat || GameManager.Instance.alleyZone.playerInAlley)

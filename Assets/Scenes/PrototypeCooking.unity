@@ -4907,6 +4907,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7315432553775059389, guid: 798d76ce73d1e4eeeb4cf8758d57e6f5, type: 3}
+      propertyPath: SubtitleText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7315432553775059389, guid: 798d76ce73d1e4eeeb4cf8758d57e6f5, type: 3}
+      propertyPath: newRecipeImage
+      value: 
+      objectReference: {fileID: 732985933}
     - target: {fileID: 7491789868161688817, guid: 798d76ce73d1e4eeeb4cf8758d57e6f5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
