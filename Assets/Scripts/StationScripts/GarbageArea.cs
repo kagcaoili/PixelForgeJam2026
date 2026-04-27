@@ -3,9 +3,9 @@ using UnityEngine;
 /// <summary>
 /// Player interacts with garbage area to throw away item they are holding
 /// </summary>
-public class GarbageArea : MonoBehaviour, IInteractable
+public class GarbageArea : Station
 {
-    public void Interact(Player player)
+    public override void Interact(Player player)
     {
         // If player isn't holding an item
         if (player.heldItem == null) return;

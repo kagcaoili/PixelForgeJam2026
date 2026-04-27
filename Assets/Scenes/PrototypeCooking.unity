@@ -4421,7 +4421,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2010879284301407532, guid: 1ee1153c162e142a6932069806666d88, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010879284301407532, guid: 1ee1153c162e142a6932069806666d88, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2010879284301407532, guid: 1ee1153c162e142a6932069806666d88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4467,10 +4471,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GarbageArea
       objectReference: {fileID: 0}
+    - target: {fileID: 3667795324231026446, guid: 1ee1153c162e142a6932069806666d88, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667795324231026446, guid: 1ee1153c162e142a6932069806666d88, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 332186748893264802, guid: 1ee1153c162e142a6932069806666d88, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 1ee1153c162e142a6932069806666d88, type: 3}
 --- !u!1001 &3318804023864225544
 PrefabInstance:
